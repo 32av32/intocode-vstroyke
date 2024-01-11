@@ -54,13 +54,15 @@ const Auth = ({ variant }: IProps) => {
             <h2>{variant}</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <FormControl error={!!errors}>
-                    <TextField
-                        required
-                        name='name'
-                        label="Имя/Название"
-                        value={inputValue.name}
-                        onChange={e => handleInputChange(e)}
-                    />
+                    {
+                        variant === AuthEnum.Signup && <TextField
+                            required
+                            name='name'
+                            label="Имя/Название"
+                            value={inputValue.name}
+                            onChange={e => handleInputChange(e)}
+                        />
+                    }
                     <TextField
                         required
                         name='email'

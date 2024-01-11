@@ -10,6 +10,7 @@ import {useParams} from "react-router-dom";
 import Address from "../../components/Address";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getAdById} from "../../createActions/adsActions";
+import {deleteFavorite, postFavorite} from "../../createActions/favoritesActions";
 
 const Ad = () => {
     const dispatch = useAppDispatch()
@@ -17,11 +18,19 @@ const Ad = () => {
     const {detailAd, loading} = useAppSelector(state => state.ads)
     const {reviews} = useAppSelector(state => state.reviews)
     const [activeImage, setActiveImage] = useState(0)
-    const [isFavorite, setIsFavorite] = useState(false)
 
     useEffect(() => {
         dispatch(getAdById(adId!))
     }, [])
+
+    const handleFavorite = () => {
+        console.log('delete')
+        if (detailAd.favorite) {
+            dispatch(deleteFavorite(detailAd.favorite))
+        } else {
+            dispatch(postFavorite(detailAd._id))
+        }
+    }
 
     return (
         loading ? <CircularProgress /> :
@@ -32,8 +41,8 @@ const Ad = () => {
                     <h2>{`${detailAd.price} ₽ ${detailAd.unit}`}</h2>
                 </div>
                 <div className={styles.action}>
-                    <Button variant={isFavorite ? 'contained' : 'outlined'} onClick={() => setIsFavorite(!isFavorite)}>
-                        {isFavorite ? 'В избранном' : 'Добавить в избранное'}
+                    <Button variant={detailAd.favorite ? 'contained' : 'outlined'} onClick={handleFavorite}>
+                        {detailAd.favorite ? 'В избранном' : 'Добавить в избранное'}
                     </Button>
                     <Link className={styles.feedbackBlock} to={'reviews'} spy={true} smooth={true}>
                         <Rating

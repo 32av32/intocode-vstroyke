@@ -21,7 +21,17 @@ export const postAd = createAsyncThunk('postAd', async (form: FormData, thunkApi
 
 export const getAdById = createAsyncThunk('getAdById', async (adId: string, thunkApi) => {
     try {
-        const response = await axios.get(`${Urls.Ads}/${adId}`)
+        const token = localStorage.getItem('token')
+        let response
+        if (token) {
+            response = await axios.get(`${Urls.Ads}/${adId}`,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+        } else {
+            response = await axios.get(`${Urls.Ads}/${adId}`)
+        }
         if (response.status !== 200) {
             return thunkApi.rejectWithValue(response.data.error)
         }

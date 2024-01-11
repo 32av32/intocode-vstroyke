@@ -29,4 +29,5 @@ export interface IAdDetail {
     unit: string
     rating: number
     user: IAdsUser
+    favorite?: string
 }

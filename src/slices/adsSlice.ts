@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IAd, IAdDetail} from "../types/adsTypes";
 import {deleteAd, getAdById, getUserAds, postAd} from "../createActions/adsActions";
+import {deleteFavorite, postFavorite} from "../createActions/favoritesActions";
 
 interface IInitialState {
     ads: IAd[]
@@ -89,6 +90,32 @@ const adsSlice = createSlice({
                 state.errors = null
             })
             .addCase(deleteAd.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
+            .addCase(postFavorite.fulfilled, (state, action: PayloadAction<IAdDetail>) => {
+                state.loading = false
+                state.errors = null
+                state.detailAd.favorite = action.payload.favorite
+            })
+            .addCase(postFavorite.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(postFavorite.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
+            .addCase(deleteFavorite.fulfilled, (state, action: PayloadAction<IAdDetail>) => {
+                state.loading = false
+                state.errors = null
+                state.detailAd.favorite = undefined
+            })
+            .addCase(deleteFavorite.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(deleteFavorite.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload as string
             })
