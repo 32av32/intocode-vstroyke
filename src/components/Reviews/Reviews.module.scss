@@ -1,0 +1,73 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: clamp(400px, 30vw, 600px);
+}
+
+.review_container {
+  background-color: $background-gray;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .review_header {
+    display: flex;
+    gap: 20px;
+  }
+
+  .review_header__title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: $gray;
+
+    .review_header__text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  .review_mark {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    div {
+      display: flex;
+      gap: 10px;
+      font-size: 1.1rem;
+
+      span:first-child {
+        color: $gray
+      }
+      span:last-child {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .review_description {
+    color: $gray;
+    line-height: 1.5;
+
+  }
+}
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .reviewFormRating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

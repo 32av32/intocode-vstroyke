@@ -1,0 +1,15 @@
+@import '../../scss/variables';
+
+
+.container {
+  border: 1px solid $orange;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+  display: flex;
+  gap: 5px;
+
+  .icon {
+    cursor: pointer;
+  }
+}

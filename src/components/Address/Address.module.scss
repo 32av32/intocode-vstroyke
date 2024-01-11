@@ -1,0 +1,27 @@
+@import '../../scss/variables';
+
+
+.address {
+  p {
+    font-size: 1.2rem;
+  }
+
+  .mapToggle {
+    cursor: pointer;
+    color: $orange;
+
+    &:hover {
+      color: $orange-selected;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

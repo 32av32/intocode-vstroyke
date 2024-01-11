@@ -1,0 +1,32 @@
+@import '../../scss/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: sticky;
+  top: 5px;
+  height: 400px;
+
+  .user_profile {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    .user_profile__info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .user_profile__rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+
+    span {
+      color: $gray;
+    }
+  }
+}

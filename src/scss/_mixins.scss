@@ -1,0 +1,11 @@
+@mixin link-flex {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
