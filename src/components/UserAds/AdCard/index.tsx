@@ -7,10 +7,12 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {useAppDispatch} from "../../../hooks";
 import {deleteAd} from "../../../createActions/adsActions";
+import {Link, useParams} from "react-router-dom";
 
 const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
     const dispatch = useAppDispatch()
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const { id } = useParams()
     const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -61,7 +63,7 @@ const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
                     }}
                 >
                     <Box className={styles.cardPopup} sx={{ p: 1, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                        <Button color='info'>Редактировать</Button>
+                        <Link to={`/account/${id}/edit_add`}><Button color='info'>Редактировать</Button></Link>
                         <Button color='error' onClick={handleDeleteAd}>Удалить</Button>
                     </Box>
                 </Popover>

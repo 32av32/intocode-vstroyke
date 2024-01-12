@@ -18,19 +18,28 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const AddAd = () => {
+interface IProps {
+    title?: string
+    description?: string
+    address?: string
+    price?: string
+    category?: string
+    unit?: string
+}
+
+const AddAd = ({title='', description='', address='', price='', category='', unit='шт.'}: IProps) => {
     const dispatch = useAppDispatch()
     const categories = useAppSelector(state => state.common.categories)
     const {ads, errors} = useAppSelector(state => state.ads)
     const [activeCategory, setActiveCategory] = useState({
-        category: '',
-        unit: 'шт.'
+        category,
+        unit
     })
     const [inputValues, setInputValues] = useState({
-        title: '',
-        description: '',
-        address: '',
-        price: '',
+        title,
+        description,
+        address,
+        price,
     })
     const [filesList, setFilesList] = useState<FileList | null>(null)
     const [didMount, setDidMount] = useState(false)

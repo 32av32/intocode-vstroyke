@@ -50,9 +50,11 @@ const Navbar = () => {
                     </Grid>
                     <Grid item>
                         <Grid container spacing={5} alignItems={'center'}>
-                            <Grid item><LinkMUI href={'/'} underline={'none'}>
-                                <FavoriteRoundedIcon sx={linkStyle.current}/>
-                            </LinkMUI></Grid>
+                            <Grid item>
+                                <Link to={`/account/${userId}/favorites`}>
+                                    <FavoriteRoundedIcon sx={linkStyle.current}/>
+                                </Link>
+                            </Grid>
                             <Grid item>
                                 <Link to={'/'}>
                                     <ShoppingCartIcon sx={linkStyle.current}/>

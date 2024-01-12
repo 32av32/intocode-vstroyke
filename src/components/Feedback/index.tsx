@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import styles from './Reviews.module.scss'
-import Review from "./Review";
+import styles from './Feedback.module.scss'
+import Reviews from "./Reviews";
 import {Tab, Tabs} from "@mui/material";
 
-const Reviews = () => {
+const Feedback = () => {
     const [activeTab, setActiveTab] = useState(0)
 
     const handleChange = (e: React.SyntheticEvent, newValue: number) => {
@@ -13,12 +13,12 @@ const Reviews = () => {
     return (
         <div className={styles.container} id={'reviews'}>
             <Tabs value={activeTab} onChange={handleChange}>
-                <Tab sx={{fontSize: '1.1rem'}} label="Reviews"  />
-                <Tab sx={{fontSize: '1.1rem'}} label="Question" />
+                <Tab sx={{fontSize: '1.1rem'}} label="Отзывы"  />
+                <Tab sx={{fontSize: '1.1rem'}} label="Вопросы" />
             </Tabs>
-            { activeTab === 0 && <Review /> }
+            { activeTab === 0 && <Reviews /> }
         </div>
     );
 };
 
-export default Reviews;
+export default Feedback;

@@ -12,7 +12,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {useAppSelector} from "../../hooks";
 
 const LinksSideBar = () => {
-    const id = useAppSelector(state => state.user.user._id)
+    const userId = useAppSelector(state => state.user.user._id)
 
     return (
         <div>
@@ -20,7 +20,7 @@ const LinksSideBar = () => {
                 <ul>
                     <li className={styles.sidebar__link}>
                         <ExtensionIcon/>
-                        <Link to={`/account/${id}`}>Мои объявления</Link>
+                        <Link to={`/account/${userId}`}>Мои объявления</Link>
                     </li>
                     <li className={styles.sidebar__link}>
                         <ShoppingBagIcon/>
@@ -32,7 +32,7 @@ const LinksSideBar = () => {
                     </li>
                     <li className={styles.sidebar__link}>
                         <ThumbUpAltIcon/>
-                        <Link to={`/account/${id}/favorites`}>Избранное</Link>
+                        <Link to={`/account/${userId}/favorites`}>Избранное</Link>
                     </li>
                     <Divider/>
                     <li className={styles.sidebar__link}>
@@ -46,7 +46,7 @@ const LinksSideBar = () => {
                     <Divider/>
                     <li className={styles.sidebar__link}>
                         <ManageAccountsIcon/>
-                        <Link to={`/account/${id}/settings`}>Настройки профиля</Link>
+                        <Link to={`/account/${userId}/settings`}>Настройки профиля</Link>
                     </li>
                 </ul>
             </div>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import styles from '../Reviews.module.scss'
-import {Avatar, Box, Button, Divider, Modal, Rating} from "@mui/material";
+import styles from '../Feedback.module.scss'
+import {Avatar, Button, Divider, Modal, Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import SendReviewModal from "./SendReviewModal";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
@@ -19,13 +19,14 @@ const getMark = (key: string) => {
     }
 }
 
-const Review = () => {
-    const [openModal, setOpenModal] = useState(false);
+const Reviews = () => {
     const dispatch = useAppDispatch()
-    const {reviews, loading} = useAppSelector(state => state.reviews)
+    const {reviews} = useAppSelector(state => state.reviews)
+    const {_id} = useAppSelector(state => state.ads.detailAd)
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
-        dispatch(getReviews())
+        dispatch(getReviews(_id))
     }, []);
 
     return (
@@ -77,4 +78,4 @@ const Review = () => {
     );
 };
 
-export default Review;
+export default Reviews;

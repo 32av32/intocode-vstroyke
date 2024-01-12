@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from '../FavoriteAds.module.scss'
 import {IAd} from "../../../types/adsTypes";
 import {IconButton, Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import {useAppDispatch} from "../../../hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {deleteFavorite} from "../../../createActions/favoritesActions";
 
 const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
     const dispatch = useAppDispatch()
+    const {favorite} = useAppSelector(state => state.ads.detailAd)
 
     const handleDeleteFavoriteAd = () => {
-        dispatch(deleteFavorite(_id))
+        dispatch(deleteFavorite(favorite!))
     }
 
     return (

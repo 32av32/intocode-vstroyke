@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import styles from '../Reviews.module.scss'
+import styles from '../Feedback.module.scss'
 import {Alert, Box, Button, InputLabel, MenuItem, Rating, Select, SelectChangeEvent, TextField} from "@mui/material";
 import {BoxModalStyle} from "../../../utils/mui";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import FormControl from "@mui/material/FormControl";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {postReview} from "../../../createActions/reviewsActions";
-import {useGetAdByIdQuery} from "../../../services/adsServices";
 
 
 const SendReviewModal = () => {
@@ -76,7 +75,8 @@ const SendReviewModal = () => {
                     </Select>
                 </FormControl>
                 <Button type='submit' disabled={success}>Отправить отзыв</Button>
-                {errors && <Alert severity="error">{errors}</Alert> || success && <Alert severity="success">Отзыв успешно добавлен</Alert>}
+                {success && <Alert severity="success">Отзыв успешно добавлен</Alert>}
+                {errors && <Alert severity="error">{errors}</Alert>}
             </form>
         </Box>
     );

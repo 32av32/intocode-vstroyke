@@ -18,9 +18,9 @@ export const postReview = createAsyncThunk('postReview', async (data: {ad: strin
     }
 })
 
-export const getReviews = createAsyncThunk('getReviews', async (_, thunkApi) => {
+export const getReviews = createAsyncThunk('getReviews', async (adId: string, thunkApi) => {
     try {
-        const response = await axios.get(Urls.Reviews)
+        const response = await axios.get(`${Urls.Reviews}/${adId}`)
         if (response.status !== 200) {
             return thunkApi.rejectWithValue(response.data.error)
         }

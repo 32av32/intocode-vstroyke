@@ -3,7 +3,7 @@ import styles from './Ad.module.scss'
 import {Button, CircularProgress, Rating} from "@mui/material";
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import Reviews from "../../components/Reviews";
+import Feedback from "../../components/Feedback";
 import { Link } from "react-scroll";
 import Communication from "../../components/Communication";
 import {useParams} from "react-router-dom";
@@ -24,9 +24,8 @@ const Ad = () => {
     }, [])
 
     const handleFavorite = () => {
-        console.log('delete')
         if (detailAd.favorite) {
-            dispatch(deleteFavorite(detailAd._id))
+            dispatch(deleteFavorite(detailAd.favorite))
         } else {
             dispatch(postFavorite(detailAd._id))
         }
@@ -77,7 +76,7 @@ const Ad = () => {
                     <h2 className={'blockTitle'}>Описание</h2>
                     <p>{detailAd.description}</p>
                 </div>
-                <Reviews/>
+                <Feedback />
             </div>
             <Communication {...detailAd.user}/>
         </div>

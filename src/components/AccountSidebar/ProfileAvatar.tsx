@@ -18,9 +18,6 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-
-
-
 const ProfileAvatar = ({_id, image}: {_id: string, image: string}) => {
     const dispatch = useAppDispatch()
     const formRef = useRef<HTMLFormElement>(null)

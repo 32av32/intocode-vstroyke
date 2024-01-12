@@ -7,21 +7,21 @@ import {getUserFavorites} from "../../createActions/favoritesActions";
 
 const FavoriteAds = () => {
     const dispatch = useAppDispatch()
-    const { ads } = useAppSelector(state => state.ads)
+    const { favoriteAds } = useAppSelector(state => state.ads)
 
     useEffect(() => {
         dispatch(getUserFavorites())
-    }, [ads]);
+    }, []);
 
 
     return (
         <div className={styles.container}>
             {
-                ads.map((ad, index) => {
+                favoriteAds.map((ad, index) => {
                    return (
                        <>
                            <AdCard key={index} {...ad} />
-                           { (ads.length - index !== 1) && <Divider /> }
+                           { (favoriteAds.length - index !== 1) && <Divider /> }
                        </>
                    )
                 })

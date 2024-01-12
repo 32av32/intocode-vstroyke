@@ -5,6 +5,7 @@ import {deleteFavorite, getUserFavorites, postFavorite} from "../createActions/f
 
 interface IInitialState {
     ads: IAd[]
+    favoriteAds: IAdDetail[]
     detailAd: IAdDetail
     loading: boolean
     errors: string | null
@@ -12,6 +13,7 @@ interface IInitialState {
 
 const initialState: IInitialState = {
     ads: [],
+    favoriteAds: [],
     detailAd: {
         _id: '',
         title: '',
@@ -110,6 +112,8 @@ const adsSlice = createSlice({
                 state.loading = false
                 state.errors = null
                 state.detailAd.favorite = undefined
+                state.favoriteAds = state.favoriteAds.filter(ad => ad._id !== action.payload._id)
+
             })
             .addCase(deleteFavorite.pending, (state) => {
                 state.loading = true
@@ -122,7 +126,7 @@ const adsSlice = createSlice({
             .addCase(getUserFavorites.fulfilled, (state, action: PayloadAction<IAdDetail[]>) => {
                 state.loading = false
                 state.errors = null
-                state.ads = action.payload
+                state.favoriteAds = action.payload
             })
             .addCase(getUserFavorites.pending, (state) => {
                 state.loading = true

@@ -30,6 +30,7 @@ function App() {
                             <Route index element={<UserAds />} />
                             <Route path='settings' element={<AccountSettings />} />
                             <Route path='favorites' element={<FavoriteAds />} />
+                            <Route path='edit_add' element={<AddAd />} />
                         </Route>
                         <Route path='/add_ad/' element={<AddAd />} />
                     </Routes>
