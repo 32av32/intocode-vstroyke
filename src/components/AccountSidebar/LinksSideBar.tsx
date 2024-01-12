@@ -32,7 +32,7 @@ const LinksSideBar = () => {
                     </li>
                     <li className={styles.sidebar__link}>
                         <ThumbUpAltIcon/>
-                        <Link to={'/'}>Избранное</Link>
+                        <Link to={`/account/${id}/favorites`}>Избранное</Link>
                     </li>
                     <Divider/>
                     <li className={styles.sidebar__link}>

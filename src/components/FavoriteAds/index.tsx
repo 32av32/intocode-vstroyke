@@ -1,19 +1,18 @@
 import React, {useEffect} from 'react';
-import AdCard from "./AdCard";
-import styles from './UserAds.module.scss'
+import AdCard from "./FavoriteAdCard";
+import styles from './FavoriteAds.module.scss'
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import Divider from "@mui/material/Divider";
-import {getUserAds} from "../../createActions/adsActions";
-import {useParams} from "react-router-dom";
+import {getUserFavorites} from "../../createActions/favoritesActions";
 
-const UserAds = () => {
+const FavoriteAds = () => {
     const dispatch = useAppDispatch()
     const { ads } = useAppSelector(state => state.ads)
-    const { id } = useParams()
 
     useEffect(() => {
-        dispatch(getUserAds(id!))
-    }, []);
+        dispatch(getUserFavorites())
+    }, [ads]);
+
 
     return (
         <div className={styles.container}>
@@ -31,4 +30,4 @@ const UserAds = () => {
     );
 };
 
-export default UserAds;
+export default FavoriteAds;

@@ -13,6 +13,7 @@ import Account from "./pages/Account";
 import AddAd from "./pages/AddAd";
 import AccountSettings from "./components/AccountSettings";
 import UserAds from "./components/UserAds";
+import FavoriteAds from "./components/FavoriteAds";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                         <Route path='account/:id' element={<Account />}>
                             <Route index element={<UserAds />} />
                             <Route path='settings' element={<AccountSettings />} />
+                            <Route path='favorites' element={<FavoriteAds />} />
                         </Route>
                         <Route path='/add_ad/' element={<AddAd />} />
                     </Routes>

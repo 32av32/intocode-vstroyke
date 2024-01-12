@@ -26,7 +26,7 @@ const Ad = () => {
     const handleFavorite = () => {
         console.log('delete')
         if (detailAd.favorite) {
-            dispatch(deleteFavorite(detailAd.favorite))
+            dispatch(deleteFavorite(detailAd._id))
         } else {
             dispatch(postFavorite(detailAd._id))
         }
@@ -41,7 +41,7 @@ const Ad = () => {
                     <h2>{`${detailAd.price} ₽ ${detailAd.unit}`}</h2>
                 </div>
                 <div className={styles.action}>
-                    <Button variant={detailAd.favorite ? 'contained' : 'outlined'} onClick={handleFavorite}>
+                    <Button variant={detailAd.favorite ? 'contained' : 'outlined'} color={detailAd.favorite ? 'error' : 'primary'} onClick={handleFavorite}>
                         {detailAd.favorite ? 'В избранном' : 'Добавить в избранное'}
                     </Button>
                     <Link className={styles.feedbackBlock} to={'reviews'} spy={true} smooth={true}>
