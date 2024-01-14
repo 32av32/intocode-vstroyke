@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
 import styles from '../UserAds.module.scss'
 import {IAd} from "../../../types/adsTypes";
-import {Box, Button, IconButton, Popover, Rating} from "@mui/material";
+import {Box, Button, IconButton, Modal, Popover, Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {useAppDispatch} from "../../../hooks";
 import {deleteAd} from "../../../createActions/adsActions";
-import {Link, useParams} from "react-router-dom";
+import {BoxModalStyle} from "../../../utils/mui";
+import AddAd from "../../../pages/AddAd";
 
-const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
+const AdCard = ({_id, category, images, title, price, unit, rating, address, description}: IAd) => {
     const dispatch = useAppDispatch()
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const { id } = useParams()
+    const [openModal, setOpenModal] = useState(false);
     const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -20,8 +21,6 @@ const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
     const handleEditClose = () => {
         setAnchorEl(null);
     };
-
-    const isOpen = Boolean(anchorEl)
 
     const handleDeleteAd = () => {
         dispatch(deleteAd(_id))
@@ -54,7 +53,7 @@ const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
                     <MoreHorizIcon fontSize='small' />
                 </IconButton>
                 <Popover
-                    open={isOpen}
+                    open={!!anchorEl}
                     anchorEl={anchorEl}
                     onClose={handleEditClose}
                     anchorOrigin={{
@@ -63,7 +62,15 @@ const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
                     }}
                 >
                     <Box className={styles.cardPopup} sx={{ p: 1, bgcolor: 'background.paper', display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                        <Link to={`/account/${id}/edit_add`}><Button color='info'>Редактировать</Button></Link>
+                        <Button color='info' onClick={() => setOpenModal(true)}>Редактировать</Button>
+                        <Modal
+                            open={openModal}
+                            onClose={() => setOpenModal(false)}
+                        >
+                            <Box sx={{...BoxModalStyle, p: 3}}>
+                                <AddAd variant='patch' _id={_id} category={category} title={title} price={price} unit={unit} address={address} description={description} />
+                            </Box>
+                        </Modal>
                         <Button color='error' onClick={handleDeleteAd}>Удалить</Button>
                     </Box>
                 </Popover>

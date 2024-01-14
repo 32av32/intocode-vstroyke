@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IAd, IAdDetail} from "../types/adsTypes";
-import {deleteAd, getAdById, getUserAds, postAd} from "../createActions/adsActions";
+import {IAd} from "../types/adsTypes";
+import {deleteAd, getAdById, getUserAds, patchAd, postAd} from "../createActions/adsActions";
 import {deleteFavorite, getUserFavorites, postFavorite} from "../createActions/favoritesActions";
 
 interface IInitialState {
     ads: IAd[]
-    favoriteAds: IAdDetail[]
-    detailAd: IAdDetail
+    favoriteAds: IAd[]
+    detailAd: IAd
     loading: boolean
     errors: string | null
 }
@@ -56,6 +56,24 @@ const adsSlice = createSlice({
                 state.loading = false
                 state.errors = action.payload as string
             })
+            .addCase(patchAd.fulfilled, (state, action: PayloadAction<IAd>) => {
+                state.loading = false
+                state.errors = null
+                state.ads = state.ads.map(ad => {
+                    if (ad._id === action.payload._id) {
+                        return action.payload
+                    }
+                    return ad
+                })
+            })
+            .addCase(patchAd.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(patchAd.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
             .addCase(getUserAds.fulfilled, (state, action: PayloadAction<IAd[]>) => {
                 state.loading = false
                 state.errors = null
@@ -69,7 +87,7 @@ const adsSlice = createSlice({
                 state.loading = false
                 state.errors = action.payload as string
             })
-            .addCase(getAdById.fulfilled, (state, action: PayloadAction<IAdDetail>) => {
+            .addCase(getAdById.fulfilled, (state, action: PayloadAction<IAd>) => {
                 state.loading = false
                 state.errors = null
                 state.detailAd = action.payload
@@ -95,7 +113,7 @@ const adsSlice = createSlice({
                 state.loading = false
                 state.errors = action.payload as string
             })
-            .addCase(postFavorite.fulfilled, (state, action: PayloadAction<IAdDetail>) => {
+            .addCase(postFavorite.fulfilled, (state, action: PayloadAction<IAd>) => {
                 state.loading = false
                 state.errors = null
                 state.detailAd.favorite = action.payload.favorite
@@ -108,7 +126,7 @@ const adsSlice = createSlice({
                 state.loading = false
                 state.errors = action.payload as string
             })
-            .addCase(deleteFavorite.fulfilled, (state, action: PayloadAction<IAdDetail>) => {
+            .addCase(deleteFavorite.fulfilled, (state, action: PayloadAction<IAd>) => {
                 state.loading = false
                 state.errors = null
                 state.detailAd.favorite = undefined
@@ -123,7 +141,7 @@ const adsSlice = createSlice({
                 state.loading = false
                 state.errors = action.payload as string
             })
-            .addCase(getUserFavorites.fulfilled, (state, action: PayloadAction<IAdDetail[]>) => {
+            .addCase(getUserFavorites.fulfilled, (state, action: PayloadAction<IAd[]>) => {
                 state.loading = false
                 state.errors = null
                 state.favoriteAds = action.payload

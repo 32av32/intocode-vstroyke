@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {IAd, IAdDetail} from "../types/adsTypes";
+import {IAd} from "../types/adsTypes";
 
 
 export const adsApi = createApi({
@@ -10,7 +10,7 @@ export const adsApi = createApi({
         getAds: builder.query<IAd[], null>({
             query: () => 'ads',
         }),
-        getAdById: builder.query<IAdDetail, string>({
+        getAdById: builder.query<IAd, string>({
             query: (adId) => `ads/${adId}`,
         }),
         postAd: builder.mutation<IAd, FormData>({

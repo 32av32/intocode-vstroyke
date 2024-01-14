@@ -8,8 +8,8 @@ import {useParams} from "react-router-dom";
 
 const UserAds = () => {
     const dispatch = useAppDispatch()
-    const { ads } = useAppSelector(state => state.ads)
-    const { id } = useParams()
+    const {ads} = useAppSelector(state => state.ads)
+    const {id} = useParams()
 
     useEffect(() => {
         dispatch(getUserAds(id!))
@@ -17,16 +17,14 @@ const UserAds = () => {
 
     return (
         <div className={styles.container}>
-            {
-                ads.map((ad, index) => {
-                   return (
-                       <>
-                           <AdCard key={index} {...ad} />
-                           { (ads.length - index !== 1) && <Divider /> }
-                       </>
-                   )
-                })
-            }
+            {ads.map((ad, index) => {
+                return (
+                    <>
+                        <AdCard key={index} {...ad} />
+                        {(ads.length - index !== 1) && <Divider/>}
+                    </>
+                )
+            })}
         </div>
     );
 };

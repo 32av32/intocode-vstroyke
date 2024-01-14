@@ -5,7 +5,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import FormControl from "@mui/material/FormControl";
 import TextCard from "../../components/TextCard";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {postAd} from "../../createActions/adsActions";
+import {patchAd, postAd} from "../../createActions/adsActions";
 
 const VisuallyHiddenInput = styled('input')({
     clipPath: 'inset(50%)',
@@ -19,15 +19,17 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 interface IProps {
+    variant?: string
+    _id?: string
     title?: string
     description?: string
     address?: string
-    price?: string
+    price?: number
     category?: string
     unit?: string
 }
 
-const AddAd = ({title='', description='', address='', price='', category='', unit='шт.'}: IProps) => {
+const AddAd = ({variant='', _id='', title='', description='', address='', price=0, category='', unit='шт.'}: IProps) => {
     const dispatch = useAppDispatch()
     const categories = useAppSelector(state => state.common.categories)
     const {ads, errors} = useAppSelector(state => state.ads)
@@ -60,8 +62,13 @@ const AddAd = ({title='', description='', address='', price='', category='', uni
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        dispatch(postAd(new FormData(formRef.current!)))
-
+        const form = new FormData(formRef.current!)
+        const data = {...activeCategory, ...inputValues}
+        if (variant) {
+            dispatch(patchAd({_id, data}))
+        } else {
+            dispatch(postAd(form))
+        }
     }
 
     useEffect(() => {
@@ -85,6 +92,8 @@ const AddAd = ({title='', description='', address='', price='', category='', uni
                            value={inputValues.description}
                            required
                            label="Описание"
+                           multiline
+                           maxRows={4}
                            onChange={e => handleInputChange(e)}/>
                 <TextField name='address'
                            value={inputValues.address}
@@ -104,8 +113,7 @@ const AddAd = ({title='', description='', address='', price='', category='', uni
                             onChange={(e) => handleInputSelect(e)}>
 
                         {categories.map((category, index) => {
-                            return <MenuItem key={category._id} value={category._id}>{category.title}</MenuItem>
-                        })}
+                            return <MenuItem key={category._id} value={category._id}>{category.title}</MenuItem>})}
                     </Select>
                 </FormControl>
                 <FormControl fullWidth required={true}>
@@ -135,7 +143,6 @@ const AddAd = ({title='', description='', address='', price='', category='', uni
                 </div>
             </form>
         </div>
-    );
-};
+    )};
 
 export default AddAd;

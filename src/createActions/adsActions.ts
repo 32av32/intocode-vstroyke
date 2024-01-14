@@ -19,6 +19,22 @@ export const postAd = createAsyncThunk('postAd', async (form: FormData, thunkApi
     }
 })
 
+export const patchAd = createAsyncThunk('patchAd', async ({_id, data}: {_id: string, data: any}, thunkApi) => {
+    try {
+        const response = await axios.patch(`${Urls.Ads}/${_id}`, data, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue(response.data.error)
+        }
+        return response.data
+    } catch(e) {
+        return thunkApi.rejectWithValue('Ошибка при добавлении объявления')
+    }
+})
+
 export const getAdById = createAsyncThunk('getAdById', async (adId: string, thunkApi) => {
     try {
         const token = localStorage.getItem('token')

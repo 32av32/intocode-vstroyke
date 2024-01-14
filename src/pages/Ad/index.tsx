@@ -11,6 +11,7 @@ import Address from "../../components/Address";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getAdById} from "../../createActions/adsActions";
 import {deleteFavorite, postFavorite} from "../../createActions/favoritesActions";
+import {IAdsUser} from "../../types/adsTypes";
 
 const Ad = () => {
     const dispatch = useAppDispatch()
@@ -78,7 +79,7 @@ const Ad = () => {
                 </div>
                 <Feedback />
             </div>
-            <Communication {...detailAd.user}/>
+            <Communication {...detailAd.user as IAdsUser}/>
         </div>
     );
 };
