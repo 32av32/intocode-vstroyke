@@ -9,11 +9,8 @@ import Divider from "@mui/material/Divider";
 import MessageIcon from "@mui/icons-material/Message";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import {useAppSelector} from "../../hooks";
 
 const LinksSideBar = () => {
-    const userId = useAppSelector(state => state.user.user._id)
-
     return (
         <div>
             <div className={styles.sidebar}>

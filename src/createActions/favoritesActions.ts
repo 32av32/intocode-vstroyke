@@ -18,9 +18,9 @@ export const postFavorite = createAsyncThunk('postFavorite', async (adId: string
     }
 })
 
-export const deleteFavorite = createAsyncThunk('deleteFavorite', async (favoriteId: string, thunkApi) => {
+export const deleteFavorite = createAsyncThunk('deleteFavorite', async (adId: string, thunkApi) => {
     try {
-        const response = await axios.delete(`${Urls.Favorites}/${favoriteId}`,{
+        const response = await axios.delete(`${Urls.Favorites}/${adId}`,{
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

@@ -26,7 +26,7 @@ const Ad = () => {
 
     const handleFavorite = () => {
         if (detailAd.favorite) {
-            dispatch(deleteFavorite(detailAd.favorite))
+            dispatch(deleteFavorite(detailAd._id))
         } else {
             dispatch(postFavorite(detailAd._id))
         }

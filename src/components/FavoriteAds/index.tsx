@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import AdCard from "./FavoriteAdCard";
+import FavoriteAdCard from "./FavoriteAdCard";
 import styles from './FavoriteAds.module.scss'
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import Divider from "@mui/material/Divider";
@@ -20,7 +20,7 @@ const FavoriteAds = () => {
                 favoriteAds.map((ad, index) => {
                    return (
                        <>
-                           <AdCard key={index} {...ad} />
+                           <FavoriteAdCard key={index} {...ad} />
                            { (favoriteAds.length - index !== 1) && <Divider /> }
                        </>
                    )

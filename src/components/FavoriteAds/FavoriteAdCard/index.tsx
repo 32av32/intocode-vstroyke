@@ -4,16 +4,15 @@ import {IAd} from "../../../types/adsTypes";
 import {IconButton, Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {useAppDispatch} from "../../../hooks";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {deleteFavorite} from "../../../createActions/favoritesActions";
 
-const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
+const FavoriteAdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
     const dispatch = useAppDispatch()
-    const {favorite} = useAppSelector(state => state.ads.detailAd)
 
     const handleDeleteFavoriteAd = () => {
-        dispatch(deleteFavorite(favorite!))
+        dispatch(deleteFavorite(_id))
     }
 
     return (
@@ -47,4 +46,4 @@ const AdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
     );
 };
 
-export default AdCard;
+export default FavoriteAdCard;
