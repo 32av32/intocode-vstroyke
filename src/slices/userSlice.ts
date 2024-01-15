@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getProfile, patchProfile} from "../createActions/userActions";
+import {getAccount, patchAccount} from "../createActions/userActions";
 import {IUser} from "../types/userType";
 
 interface IInitialState {
@@ -28,29 +28,29 @@ const userSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(getProfile.fulfilled, (state, action: PayloadAction<IUser>) => {
+        builder.addCase(getAccount.fulfilled, (state, action: PayloadAction<IUser>) => {
             state.loading = false
             state.errors = null
             state.user = action.payload
         })
-            .addCase(getProfile.pending, (state) => {
+            .addCase(getAccount.pending, (state) => {
                 state.loading = true
                 state.errors = null
             })
-            .addCase(getProfile.rejected, (state, action) => {
+            .addCase(getAccount.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload as string
             })
-            .addCase(patchProfile.fulfilled, (state, action: PayloadAction<IUser>) => {
+            .addCase(patchAccount.fulfilled, (state, action: PayloadAction<IUser>) => {
                 state.loading = false
                 state.errors = null
                 state.user = action.payload
             })
-            .addCase(patchProfile.pending, (state) => {
+            .addCase(patchAccount.pending, (state) => {
                 state.loading = true
                 state.errors = null
             })
-            .addCase(patchProfile.rejected, (state, action) => {
+            .addCase(patchAccount.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload as string
             })

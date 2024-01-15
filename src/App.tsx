@@ -26,7 +26,7 @@ function App() {
                         <Route path='ads/:adId' element={<Ad />} />
                         <Route path='auth/signup' element={<Auth variant={AuthEnum.Signup} />} />
                         <Route path='auth/login' element={<Auth variant={AuthEnum.Login} />} />
-                        <Route path='account/:id' element={<Account />}>
+                        <Route path='account' element={<Account />}>
                             <Route index element={<UserAds />} />
                             <Route path='settings' element={<AccountSettings />} />
                             <Route path='favorites' element={<FavoriteAds />} />

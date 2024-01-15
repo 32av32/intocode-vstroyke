@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styles from './Navbar.module.scss'
 import {Link} from 'react-router-dom'
-import {AppBar, Button, Grid, Link as LinkMUI, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, Grid, Toolbar, Typography} from "@mui/material";
 import Search from "./SearchTag";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -51,7 +51,7 @@ const Navbar = () => {
                     <Grid item>
                         <Grid container spacing={5} alignItems={'center'}>
                             <Grid item>
-                                <Link to={`/account/${userId}/favorites`}>
+                                <Link to={`/account/favorites`}>
                                     <FavoriteRoundedIcon sx={linkStyle.current}/>
                                 </Link>
                             </Grid>
@@ -63,7 +63,7 @@ const Navbar = () => {
                             {userId ?
                                 <>
                                     <Grid item>
-                                        <Link to={`/account/${userId}`}>
+                                        <Link to={`/account`}>
                                             <AccountCircleRoundedIcon sx={linkStyle.current}/>
                                         </Link>
                                     </Grid>

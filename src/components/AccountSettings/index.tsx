@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from './AccountSettings.module.scss'
 import {Alert, Button, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import {patchProfile} from "../../createActions/userActions";
+import {patchAccount} from "../../createActions/userActions";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 
 const AccountSettings = () => {
@@ -21,7 +21,7 @@ const AccountSettings = () => {
         e.preventDefault()
         setSuccess(false)
         const formData = new FormData(formRef.current!)
-        dispatch(patchProfile({id: user._id, form: formData}))
+        dispatch(patchAccount(formData))
     }
 
     useEffect(() => {

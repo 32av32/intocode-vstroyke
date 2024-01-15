@@ -4,7 +4,7 @@ import {Alert, Avatar, Box, Button, IconButton, Modal, Popover, styled} from "@m
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {patchProfile} from "../../createActions/userActions";
+import {patchAccount} from "../../createActions/userActions";
 import {BoxModalStyle} from "../../utils/mui";
 
 const VisuallyHiddenInput = styled('input')({
@@ -42,7 +42,7 @@ const ProfileAvatar = ({_id, image}: {_id: string, image: string}) => {
     const handleSubmitProfileImageForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         const formData = new FormData(formRef.current!)
-        dispatch(patchProfile({id: _id, form: formData}))
+        dispatch(patchAccount(formData))
     }
 
     return (

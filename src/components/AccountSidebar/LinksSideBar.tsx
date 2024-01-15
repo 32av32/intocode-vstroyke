@@ -20,7 +20,7 @@ const LinksSideBar = () => {
                 <ul>
                     <li className={styles.sidebar__link}>
                         <ExtensionIcon/>
-                        <Link to={`/account/${userId}`}>Мои объявления</Link>
+                        <Link to={`/account`}>Мои объявления</Link>
                     </li>
                     <li className={styles.sidebar__link}>
                         <ShoppingBagIcon/>
@@ -32,7 +32,7 @@ const LinksSideBar = () => {
                     </li>
                     <li className={styles.sidebar__link}>
                         <ThumbUpAltIcon/>
-                        <Link to={`/account/${userId}/favorites`}>Избранное</Link>
+                        <Link to={`/account/favorites`}>Избранное</Link>
                     </li>
                     <Divider/>
                     <li className={styles.sidebar__link}>
@@ -46,7 +46,7 @@ const LinksSideBar = () => {
                     <Divider/>
                     <li className={styles.sidebar__link}>
                         <ManageAccountsIcon/>
-                        <Link to={`/account/${userId}/settings`}>Настройки профиля</Link>
+                        <Link to={`/account/settings`}>Настройки профиля</Link>
                     </li>
                 </ul>
             </div>

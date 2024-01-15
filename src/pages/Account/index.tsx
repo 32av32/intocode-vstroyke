@@ -3,7 +3,7 @@ import styles from './Account.module.scss'
 import AccountSidebar from "../../components/AccountSidebar";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {Outlet, useParams} from "react-router-dom";
-import {getProfile} from "../../createActions/userActions";
+import {getAccount} from "../../createActions/userActions";
 
 
 const Account = () => {
@@ -12,8 +12,8 @@ const Account = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        dispatch(getProfile(id!))
-    }, [id]);
+        dispatch(getAccount())
+    }, []);
 
     return (
             <div className={styles.container}>
