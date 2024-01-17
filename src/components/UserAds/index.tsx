@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import AdCard from "./AdCard";
+import UserAdCard from "./UserAdCard";
 import styles from './UserAds.module.scss'
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import Divider from "@mui/material/Divider";
@@ -20,7 +20,7 @@ const UserAds = () => {
             {ads.map((ad, index) => {
                 return (
                     <>
-                        <AdCard key={index} {...ad} />
+                        <UserAdCard key={index} {...ad} />
                         {(ads.length - index !== 1) && <Divider/>}
                     </>
                 )

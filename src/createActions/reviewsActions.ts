@@ -18,7 +18,7 @@ export const postReview = createAsyncThunk('postReview', async (data: {ad: strin
     }
 })
 
-export const getReviews = createAsyncThunk('getReviews', async (adId: string, thunkApi) => {
+export const getReviews = createAsyncThunk('reviews/getReviews', async (adId: string, thunkApi) => {
     try {
         const response = await axios.get(`${Urls.Reviews}/${adId}`)
         if (response.status !== 200) {

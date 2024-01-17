@@ -10,7 +10,7 @@ import {deleteAd} from "../../../createActions/adsActions";
 import {BoxModalStyle} from "../../../utils/mui";
 import AddAd from "../../../pages/AddAd";
 
-const AdCard = ({_id, category, images, title, price, unit, rating, address, description}: IAd) => {
+const UserAdCard = ({_id, category, images, title, price, unit, rating, address, description}: IAd) => {
     const dispatch = useAppDispatch()
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [openModal, setOpenModal] = useState(false);
@@ -79,4 +79,4 @@ const AdCard = ({_id, category, images, title, price, unit, rating, address, des
     );
 };
 
-export default AdCard;
+export default UserAdCard;

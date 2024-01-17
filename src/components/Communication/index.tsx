@@ -1,15 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Communication.module.scss'
-import {Avatar, Button, Rating} from "@mui/material";
+import {Alert, Avatar, Button, Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+import LoadingButton from '@mui/lab/LoadingButton';
 import {IAdsUser} from "../../types/adsTypes";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {getOrder, postOrder} from "../../createActions/ordersActions";
+import {orderStatusMap} from "../../types/ordersTypes";
 
 const Communication = ({name, organization, image, createdDate}: IAdsUser) => {
+    const dispatch = useAppDispatch()
+    const {_id} = useAppSelector(state => state.ads.detailAd)
+    const {loading, errors, order} = useAppSelector(state => state.orders)
 
+    const handlePostOrder = () => {
+        dispatch(postOrder(_id))
+    }
+
+    useEffect(() => {
+        dispatch(getOrder(_id))
+    }, [_id])
 
     return (
         <div className={styles.container}>
-            <Button variant={'contained'} sx={{width: '400px', height: '60px', fontSize: '1.3rem'}} color='success'>Заказать</Button>
+            {errors && <Alert severity="error">{errors}</Alert>}
+            {
+                loading ?
+                    <LoadingButton loading variant='contained' sx={{width: '400px', height: '60px', fontSize: '1.3rem'}} color='success'>Submit</LoadingButton> :
+                    <Button disabled={!!order?.status} variant={'contained'} sx={{width: '400px', height: '60px', fontSize: '1.3rem'}} color='success'
+                            onClick={handlePostOrder}>{order && order.status ? orderStatusMap[order.status] : 'Заказать'}</Button>
+            }
             <Button variant={'contained'} sx={{width: '400px', height: '60px', fontSize: '1.3rem'}} color='info'>Позвонить</Button>
             <Button variant={'contained'} sx={{width: '400px', height: '60px', fontSize: '1.3rem'}} color='warning'>Написать</Button>
             <div className={styles.user_profile}>

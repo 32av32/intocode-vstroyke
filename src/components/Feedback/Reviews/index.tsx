@@ -27,7 +27,7 @@ const Reviews = () => {
 
     useEffect(() => {
         dispatch(getReviews(_id))
-    }, []);
+    }, [_id]);
 
     return (
         <>
