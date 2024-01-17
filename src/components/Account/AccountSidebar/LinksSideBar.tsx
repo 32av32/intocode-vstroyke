@@ -17,28 +17,28 @@ const LinksSideBar = () => {
                 <ul>
                     <li className={styles.sidebar__link}>
                         <ExtensionIcon/>
-                        <Link to={`/account`}>Мои объявления</Link>
+                        <Link to={'/account'}>Мои объявления</Link>
                     </li>
                     <li className={styles.sidebar__link}>
                         <ShoppingBagIcon/>
-                        <Link to={'/'}>Мои заказы</Link>
+                        <Link to={'/account/orders'}>Мои заказы</Link>
                     </li>
                     <li className={styles.sidebar__link}>
                         <RateReviewIcon/>
-                        <Link to={'/'}>Мои отзывы</Link>
+                        <Link to={'/account'}>Мои отзывы</Link>
                     </li>
                     <li className={styles.sidebar__link}>
                         <ThumbUpAltIcon/>
-                        <Link to={`/account/favorites`}>Избранное</Link>
+                        <Link to={'/account/favorites'}>Избранное</Link>
                     </li>
                     <Divider/>
                     <li className={styles.sidebar__link}>
                         <MessageIcon/>
-                        <Link to={'/'}>Сообщения</Link>
+                        <Link to={'/account'}>Сообщения</Link>
                     </li>
                     <li className={styles.sidebar__link}>
                         <NotificationsIcon/>
-                        <Link to={'/'}>Уведомления</Link>
+                        <Link to={'/account'}>Уведомления</Link>
                     </li>
                     <Divider/>
                     <li className={styles.sidebar__link}>

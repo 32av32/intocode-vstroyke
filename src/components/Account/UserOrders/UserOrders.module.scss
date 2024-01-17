@@ -1,0 +1,17 @@
+@import "../../../scss/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .card {
+    display: flex;
+    gap: 20px;
+
+    .status {
+      padding: 10px 0;
+      color: $gray;
+    }
+  }
+}

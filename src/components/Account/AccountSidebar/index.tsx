@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import {Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import LinksSideBar from "./LinksSideBar";
-import {useAppSelector} from "../../hooks";
+import {useAppSelector} from "../../../hooks";
 import ProfileAvatar from "./ProfileAvatar";
 
 

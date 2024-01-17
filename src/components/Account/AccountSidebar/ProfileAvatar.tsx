@@ -3,9 +3,9 @@ import styles from "./AccountSidebar.module.scss";
 import {Alert, Avatar, Box, Button, IconButton, Modal, Popover, styled} from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {patchAccount} from "../../createActions/userActions";
-import {BoxModalStyle} from "../../utils/mui";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {patchAccount} from "../../../createActions/userActions";
+import {BoxModalStyle} from "../../../utils/mui";
 
 const VisuallyHiddenInput = styled('input')({
     clipPath: 'inset(50%)',

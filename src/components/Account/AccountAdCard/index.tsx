@@ -1,19 +1,14 @@
 import React from 'react';
-import styles from '../FavoriteAds.module.scss'
-import {IAd} from "../../../types/adsTypes";
-import {IconButton, Rating} from "@mui/material";
+import styles from './AccountAdCard.module.scss'
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import {useAppDispatch} from "../../../hooks";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import {deleteFavorite} from "../../../createActions/favoritesActions";
+import {IAd} from "../../../types/adsTypes";
+import {Rating} from "@mui/material";
+import {useAppSelector} from "../../../hooks";
 
-const FavoriteAdCard = ({_id, category, images, title, price, unit, rating}: IAd) => {
-    const dispatch = useAppDispatch()
-
-    const handleDeleteFavoriteAd = () => {
-        dispatch(deleteFavorite(_id))
-    }
+const AccountAdCard = ({category, images, title, price, unit, rating}: IAd) => {
+    const {categories} = useAppSelector(state => state.common)
+    const categoryTitle = categories.find(item => item._id === category)
 
     return (
         <div className={styles.cardContainer}>
@@ -26,7 +21,7 @@ const FavoriteAdCard = ({_id, category, images, title, price, unit, rating}: IAd
             </div>
             <div className={styles.cardContent}>
                 <h3>{title}</h3>
-                <p>Категория: {category}</p>
+                <p>Категория: {categoryTitle?.title}</p>
                 <h4>Цена: {price} ₽ {unit}</h4>
                 <h4 className={styles.cardRating}>
                     {rating}
@@ -37,13 +32,8 @@ const FavoriteAdCard = ({_id, category, images, title, price, unit, rating}: IAd
                     />
                 </h4>
             </div>
-            <div>
-                <IconButton size="large" onClick={handleDeleteFavoriteAd}>
-                    <FavoriteIcon fontSize="inherit" color='error' />
-                </IconButton>
-            </div>
         </div>
     );
 };
 
-export default FavoriteAdCard;
+export default AccountAdCard;

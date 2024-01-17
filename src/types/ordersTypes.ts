@@ -1,5 +1,7 @@
+import {IAd} from "./adsTypes";
+
 export interface IOrder {
-    ad: string
+    ad: string | IAd
     user: string
     createdDate: string
     status: 'pending' | 'processing' | 'fulfilled' | 'rejected' | undefined
