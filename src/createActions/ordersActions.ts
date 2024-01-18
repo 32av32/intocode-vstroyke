@@ -51,3 +51,19 @@ export const getOrders = createAsyncThunk('orders/getOrders', async (_, thunkApi
         return thunkApi.rejectWithValue('Ошибка при получении заказа')
     }
 })
+
+export const deleteOrders = createAsyncThunk('orders/deleteOrders', async (id: string, thunkApi) => {
+    try {
+        const response = await axios.delete(`${Urls.Orders}/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue(response.data.error)
+        }
+        return response.data
+    } catch (e) {
+        return thunkApi.rejectWithValue('Ошибка при получении заказа')
+    }
+})

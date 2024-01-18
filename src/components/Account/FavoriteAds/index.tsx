@@ -6,10 +6,11 @@ import {deleteFavorite, getUserFavorites} from "../../../createActions/favorites
 import AccountAdCard from "../AccountAdCard";
 import {IconButton} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import {Link} from 'react-router-dom';
 
 const FavoriteAds = () => {
     const dispatch = useAppDispatch()
-    const { favoriteAds } = useAppSelector(state => state.ads)
+    const {favoriteAds} = useAppSelector(state => state.ads)
 
     const handleDeleteFavoriteAd = (id: string) => {
         dispatch(deleteFavorite(id))
@@ -21,23 +22,23 @@ const FavoriteAds = () => {
 
     return (
         <div className={styles.container}>
-            {
-                favoriteAds.map((ad, index) => {
-                   return (
-                       <>
-                           <div className={styles.card}>
-                               <AccountAdCard key={index} {...ad} />
-                               <div>
-                                   <IconButton size="large" onClick={() => handleDeleteFavoriteAd(ad._id)}>
-                                       <FavoriteIcon fontSize="inherit" color='error'/>
-                                   </IconButton>
-                               </div>
-                           </div>
-                           {(favoriteAds.length - index !== 1) && <Divider/>}
-                       </>
-                   )
-                })
-            }
+            {favoriteAds.map((ad, index) => {
+                return (
+                    <>
+                        <div className={styles.card}>
+                            <Link to={`/ads/${ad._id}`}>
+                                <AccountAdCard key={index} {...ad} />
+                            </Link>
+                            <div>
+                                <IconButton size="large" onClick={() => handleDeleteFavoriteAd(ad._id)}>
+                                    <FavoriteIcon fontSize="inherit" color='error'/>
+                                </IconButton>
+                            </div>
+                        </div>
+                        {(favoriteAds.length - index !== 1) && <Divider/>}
+                    </>
+                )
+            })}
         </div>
     );
 };

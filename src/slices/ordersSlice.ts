@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IOrder} from "../types/ordersTypes";
-import {getOrder, getOrders, postOrder} from "../createActions/ordersActions";
+import {deleteOrders, getOrder, getOrders, postOrder} from "../createActions/ordersActions";
 
 interface IInitialState {
     orders: IOrder[]
@@ -12,6 +12,7 @@ interface IInitialState {
 const initialState: IInitialState = {
     orders: [],
     order: {
+        _id: '',
         ad: '',
         user: '',
         createdDate: '',
@@ -63,6 +64,19 @@ const ordersSlice = createSlice({
                 state.errors = null
             })
             .addCase(getOrders.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
+            .addCase(deleteOrders.fulfilled, (state, action: PayloadAction<string, string, { arg: string }>) => {
+                state.loading = false
+                state.errors = null
+                state.orders = state.orders.filter(order => order._id !== action.meta.arg)
+            })
+            .addCase(deleteOrders.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(deleteOrders.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload as string
             })

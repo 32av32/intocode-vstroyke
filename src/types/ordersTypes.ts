@@ -1,7 +1,8 @@
 import {IAd} from "./adsTypes";
 
 export interface IOrder {
-    ad: string | IAd
+    _id: string
+    ad: IAd | string
     user: string
     createdDate: string
     status: 'pending' | 'processing' | 'fulfilled' | 'rejected' | undefined
