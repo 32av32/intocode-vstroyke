@@ -12,11 +12,13 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getAdById} from "../../createActions/adsActions";
 import {deleteFavorite, postFavorite} from "../../createActions/favoritesActions";
 import {IAdsUser} from "../../types/adsTypes";
+import OrdersActionsContainer from "../../components/Account/OrdersActionsContainer";
 
 const Ad = () => {
     const dispatch = useAppDispatch()
     const { adId } = useParams()
     const {detailAd, loading} = useAppSelector(state => state.ads)
+    const {user} = useAppSelector(state => state.user)
     const {reviews} = useAppSelector(state => state.reviews)
     const [activeImage, setActiveImage] = useState(0)
 
@@ -79,7 +81,11 @@ const Ad = () => {
                 </div>
                 <Feedback />
             </div>
-            <Communication {...detailAd.user as IAdsUser}/>
+            {
+                typeof detailAd.user !== 'string' && user._id === detailAd.user._id ?
+                    <OrdersActionsContainer /> :
+                    <Communication {...detailAd.user as IAdsUser}/>
+            }
         </div>
     );
 };

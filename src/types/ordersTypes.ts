@@ -1,11 +1,14 @@
 import {IAd} from "./adsTypes";
+import {IUser} from "./userType";
 
+
+export type IOrderUser = Pick<IUser, '_id' | 'email' | 'name' | 'image'>
 export interface IOrder {
     _id: string
     ad: IAd | string
-    user: string
+    user: IOrderUser | string
     createdDate: string
-    status: 'pending' | 'processing' | 'fulfilled' | 'rejected' | undefined
+    status: 'pending' | 'processing' | 'fulfilled' | 'rejected' | null
 }
 
 export const orderStatusMap = {
@@ -13,4 +16,5 @@ export const orderStatusMap = {
     'processing': 'В работе',
     'fulfilled': 'Завершен',
     'rejected': 'Отклонен',
+    'canceled': 'Прекращен',
 }

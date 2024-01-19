@@ -24,7 +24,6 @@ const PendingOrders = ({orders}: { orders: IOrder[] }) => {
 
     return (
         <div className={styles.ordersContainer}>
-
             {orders.map((order, index) => {
                 return (
                     <div className={styles.orderItem}>
@@ -53,8 +52,8 @@ const PendingOrders = ({orders}: { orders: IOrder[] }) => {
                                 }}
                             >
                                 <Box className={styles.cardPopup} sx={boxPopoverStyle}>
-                                    <Button color='success' onClick={() => handleOrderAction(order._id, 'processing')}>Принять</Button>
-                                    <Button color='error' onClick={() => handleOrderAction(order._id, 'rejected')}>Отклонить</Button>
+                                    <Button color='success' onClick={() => handleOrderAction(order._id, 'fulfilled')}>Завершить</Button>
+                                    <Button color='error' onClick={() => handleOrderAction(order._id, 'canceled')}>Прекратить</Button>
                                 </Box>
                             </Popover>
                         </div>

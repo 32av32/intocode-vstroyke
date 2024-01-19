@@ -34,6 +34,7 @@ function App() {
                             <Route path='edit_add' element={<AddAd />} />
                             <Route path='orders' element={<UserOrders />} />
                         </Route>
+                        <Route path='account/ads/:adId' element={<Ad />} />
                         <Route path='/add_ad/' element={<AddAd />} />
                     </Routes>
                 </div>

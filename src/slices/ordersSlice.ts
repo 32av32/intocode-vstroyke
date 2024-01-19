@@ -1,6 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IOrder} from "../types/ordersTypes";
-import {deleteOrders, getOrder, getOrders, postOrder} from "../createActions/ordersActions";
+import {
+    deleteOrders,
+    getAdOrders,
+    getOrder,
+    getUserOrders,
+    patchOrders,
+    postOrder
+} from "../createActions/ordersActions";
 
 interface IInitialState {
     orders: IOrder[]
@@ -16,7 +23,7 @@ const initialState: IInitialState = {
         ad: '',
         user: '',
         createdDate: '',
-        status: undefined,
+        status: null,
     },
     loading: false,
     errors: null,
@@ -54,16 +61,29 @@ const ordersSlice = createSlice({
                 state.loading = false
                 state.errors = action.payload as string
             })
-            .addCase(getOrders.fulfilled, (state, action: PayloadAction<IOrder[]>) => {
+            .addCase(getUserOrders.fulfilled, (state, action: PayloadAction<IOrder[]>) => {
                 state.loading = false
                 state.errors = null
                 state.orders = action.payload
             })
-            .addCase(getOrders.pending, (state) => {
+            .addCase(getUserOrders.pending, (state) => {
                 state.loading = true
                 state.errors = null
             })
-            .addCase(getOrders.rejected, (state, action) => {
+            .addCase(getUserOrders.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
+            .addCase(getAdOrders.fulfilled, (state, action: PayloadAction<IOrder[]>) => {
+                state.loading = false
+                state.errors = null
+                state.orders = action.payload
+            })
+            .addCase(getAdOrders.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(getAdOrders.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload as string
             })
@@ -77,6 +97,25 @@ const ordersSlice = createSlice({
                 state.errors = null
             })
             .addCase(deleteOrders.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
+            .addCase(patchOrders.fulfilled, (state, action: PayloadAction<IOrder>) => {
+                state.loading = false
+                state.errors = null
+                state.orders = state.orders.map(order => {
+                    if (order._id === action.payload._id) {
+                        order.status = action.payload.status
+                        return order
+                    }
+                    return order
+                })
+            })
+            .addCase(patchOrders.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(patchOrders.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload as string
             })

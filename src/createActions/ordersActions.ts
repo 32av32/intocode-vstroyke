@@ -36,9 +36,25 @@ export const getOrder = createAsyncThunk('orders/getOrder', async (adId: string,
     }
 })
 
-export const getOrders = createAsyncThunk('orders/getOrders', async (_, thunkApi) => {
+export const getUserOrders = createAsyncThunk('orders/getOrders', async (_, thunkApi) => {
     try {
         const response = await axios.get(Urls.Orders, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue(response.data.error)
+        }
+        return response.data
+    } catch(e) {
+        return thunkApi.rejectWithValue('Ошибка при получении заказа')
+    }
+})
+
+export const getAdOrders = createAsyncThunk('orders/getAdOrders', async (adId: string, thunkApi) => {
+    try {
+        const response = await axios.get(`${Urls.Orders}/by_ad/${adId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -55,6 +71,22 @@ export const getOrders = createAsyncThunk('orders/getOrders', async (_, thunkApi
 export const deleteOrders = createAsyncThunk('orders/deleteOrders', async (id: string, thunkApi) => {
     try {
         const response = await axios.delete(`${Urls.Orders}/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue(response.data.error)
+        }
+        return response.data
+    } catch (e) {
+        return thunkApi.rejectWithValue('Ошибка при получении заказа')
+    }
+})
+
+export const patchOrders = createAsyncThunk('orders/patchOrders', async ({id, status}: {id: string, status: string}, thunkApi) => {
+    try {
+        const response = await axios.patch(`${Urls.Orders}/${id}`, {status}, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
