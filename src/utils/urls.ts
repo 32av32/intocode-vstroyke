@@ -7,4 +7,5 @@ export enum Urls {
     Users ='http://localhost:4000/users',
     Reviews ='http://localhost:4000/reviews',
     Favorites ='http://localhost:4000/favorites',
+    Questions = 'http://localhost:4000/questions'
 }
