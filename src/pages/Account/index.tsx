@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styles from './Account.module.scss'
-import AccountSidebar from "../../components/AccountSidebar";
+import AccountSidebar from "../../components/Account/AccountSidebar";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {Outlet} from "react-router-dom";
 import {getAccount} from "../../createActions/userActions";

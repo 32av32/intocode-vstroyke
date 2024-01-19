@@ -1,10 +1,5 @@
-@import "../../scss/variables";
+@import "../../../scss/variables";
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
 
 .cardContainer {
   display: flex;
@@ -44,6 +39,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 220px;
 
     .cardRating {
       display: flex;
@@ -51,14 +47,6 @@
       gap: 5px;
       color: $gray;
     }
-  }
-
-  &:hover {
-    scale: 1.02;
-  }
-
-  a:hover {
-    color: $orange;
   }
 }
 

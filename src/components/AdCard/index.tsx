@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProductCard.module.scss'
+import styles from './AdCard.module.scss'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 // import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
@@ -9,7 +9,7 @@ import {IAd} from "../../types/adsTypes";
 
 type IProps = Pick<IAd, '_id' | 'title' | 'price' | 'unit' | 'rating' | 'images'>
 
-const ProductCard = ({ _id, title, price, unit, rating, images }:IProps) => {
+const AdCard = ({ _id, title, price, unit, rating, images }:IProps) => {
     return (
         <div className={styles.container} >
             <div className={styles.productImage}>
@@ -41,4 +41,4 @@ const ProductCard = ({ _id, title, price, unit, rating, images }:IProps) => {
     );
 };
 
-export default ProductCard;
+export default AdCard;

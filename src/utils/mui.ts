@@ -21,3 +21,11 @@ export const BoxModalStyle = {
     boxShadow: 24,
     borderRadius: '10px'
 };
+
+export const boxPopoverStyle = {
+    p: 1,
+    bgcolor: 'background.paper',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '5px'
+}

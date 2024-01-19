@@ -13,6 +13,7 @@ export interface IAd {
     unit: string
     rating: number
     favorite?: string
+    orderStatus?: 'pending' | 'processing' | 'fulfilled' | 'rejected'
 }
 
 // export interface IUsersAd extends IAd{

@@ -8,4 +8,4 @@ export enum Urls {
     Reviews ='http://localhost:4000/reviews',
     Favorites ='http://localhost:4000/favorites',
     Questions = 'http://localhost:4000/questions'
-}
+    Orders = 'http://localhost:4000/orders',
