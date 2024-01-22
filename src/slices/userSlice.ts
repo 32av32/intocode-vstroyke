@@ -10,7 +10,7 @@ interface IInitialState {
 
 const initialState: IInitialState = {
     user: {
-        _id: '',
+        _id: localStorage.getItem('userId') ?? '',
         email: '',
         name: '',
         organization: '',

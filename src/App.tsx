@@ -15,6 +15,7 @@ import AccountSettings from "./components/Account/AccountSettings";
 import UserAds from "./components/Account/UserAds";
 import FavoriteAds from "./components/Account/FavoriteAds";
 import UserOrders from "./components/Account/UserOrders";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                         </Route>
                         <Route path='account/ads/:adId' element={<Ad />} />
                         <Route path='/add_ad/' element={<AddAd />} />
+                        <Route path='/users/:id' element={<UserProfile />} />
                     </Routes>
                 </div>
             </ThemeProvider>

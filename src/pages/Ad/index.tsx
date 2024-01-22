@@ -84,7 +84,7 @@ const Ad = () => {
             {
                 typeof detailAd.user !== 'string' && user._id === detailAd.user._id ?
                     <OrdersActionsContainer /> :
-                    <Communication {...detailAd.user as IAdsUser}/>
+                    <Communication />
             }
         </div>
     );
