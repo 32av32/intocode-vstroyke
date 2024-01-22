@@ -4,13 +4,13 @@ import {useAppDispatch, useAppSelector} from "../../../hooks";
 import Divider from "@mui/material/Divider";
 import {deleteFavorite, getUserFavorites} from "../../../createActions/favoritesActions";
 import AccountAdCard from "../AccountAdCard";
-import {IconButton} from "@mui/material";
+import {Alert, CircularProgress, IconButton} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {Link} from 'react-router-dom';
 
 const FavoriteAds = () => {
     const dispatch = useAppDispatch()
-    const {favoriteAds} = useAppSelector(state => state.ads)
+    const {favoriteAds, loading, errors} = useAppSelector(state => state.ads)
 
     const handleDeleteFavoriteAd = (id: string) => {
         dispatch(deleteFavorite(id))
@@ -22,7 +22,10 @@ const FavoriteAds = () => {
 
     return (
         <div className={styles.container}>
-            {favoriteAds.map((ad, index) => {
+            {
+                (loading && <CircularProgress />) ||
+                (errors && <Alert severity="error">{errors}</Alert>) ||
+                favoriteAds.map((ad, index) => {
                 return (
                     <>
                         <div className={styles.card}>

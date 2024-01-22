@@ -1,6 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './AddAd.module.scss'
-import {Alert, Button, InputLabel, MenuItem, Select, SelectChangeEvent, styled, TextField} from "@mui/material";
+import {
+    Alert,
+    Button,
+    CircularProgress,
+    InputLabel,
+    MenuItem,
+    Select,
+    SelectChangeEvent,
+    styled,
+    TextField
+} from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import FormControl from "@mui/material/FormControl";
 import TextCard from "../../components/TextCard";
@@ -32,7 +42,7 @@ interface IProps {
 const AddAd = ({variant='', _id='', title='', description='', address='', price=0, category='', unit='шт.'}: IProps) => {
     const dispatch = useAppDispatch()
     const categories = useAppSelector(state => state.common.categories)
-    const {ads, errors} = useAppSelector(state => state.ads)
+    const {ads, errors, loading} = useAppSelector(state => state.ads)
     const [activeCategory, setActiveCategory] = useState({
         category,
         unit
@@ -80,69 +90,77 @@ const AddAd = ({variant='', _id='', title='', description='', address='', price=
 
     return (
         <div className={styles.container}>
-            <form ref={formRef} onSubmit={e => handleSubmit(e)}>
-                {success && <Alert severity="success">Объявление успешно добавлено</Alert>}
-                {errors && <Alert severity="error">{errors}</Alert>}
-                <TextField name='title'
-                           value={inputValues.title}
-                           required
-                           label="Название"
-                           onChange={e => handleInputChange(e)}/>
-                <TextField name='description'
-                           value={inputValues.description}
-                           required
-                           label="Описание"
-                           multiline
-                           maxRows={4}
-                           onChange={e => handleInputChange(e)}/>
-                <TextField name='address'
-                           value={inputValues.address}
-                           required
-                           label="Адрес"
-                           onChange={e => handleInputChange(e)}/>
-                <TextField name='price'
-                           value={inputValues.price}
-                           required
-                           label="Цена"
-                           onChange={e => handleInputChange(e)}/>
-                <FormControl fullWidth required={true}>
-                    <InputLabel id="category-select-label">Категория</InputLabel>
-                    <Select name='category'
-                            labelId="category-select-label"
-                            value={activeCategory.category}
-                            onChange={(e) => handleInputSelect(e)}>
+            {
+                loading ?
+                    <CircularProgress/> :
+                    <form ref={formRef} onSubmit={e => handleSubmit(e)}>
+                        {success && <Alert severity="success">Объявление успешно добавлено</Alert>}
+                        {errors && <Alert severity="error">{errors}</Alert>}
+                        <TextField name='title'
+                                   value={inputValues.title}
+                                   required
+                                   label="Название"
+                                   onChange={e => handleInputChange(e)}/>
+                        <TextField name='description'
+                                   value={inputValues.description}
+                                   required
+                                   label="Описание"
+                                   multiline
+                                   maxRows={4}
+                                   onChange={e => handleInputChange(e)}/>
+                        <TextField name='address'
+                                   value={inputValues.address}
+                                   required
+                                   label="Адрес"
+                                   onChange={e => handleInputChange(e)}/>
+                        <TextField name='price'
+                                   value={inputValues.price}
+                                   required
+                                   label="Цена"
+                                   onChange={e => handleInputChange(e)}/>
+                        <FormControl fullWidth required={true}>
+                            <InputLabel id="category-select-label">Категория</InputLabel>
+                            <Select name='category'
+                                    labelId="category-select-label"
+                                    value={activeCategory.category}
+                                    onChange={(e) => handleInputSelect(e)}>
 
-                        {categories.map((category, index) => {
-                            return <MenuItem key={category._id} value={category._id}>{category.title}</MenuItem>})}
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth required={true}>
-                    <InputLabel id="unit-select-label">Единица</InputLabel>
-                    <Select name='unit'
-                            required
-                            labelId="unit-select-label"
-                            value={activeCategory.unit}
-                            onChange={e => handleInputSelect(e)}>
-                        <MenuItem value={'шт.'}>шт.</MenuItem>
-                        <MenuItem value={'кв.м.'}>кв.м.</MenuItem>
-                        <MenuItem value={'куб.м.'}>куб.м.</MenuItem>
-                    </Select>
-                </FormControl>
-                <div className={styles.imageCardsContainer}>
-                    {[...Array(filesList?.length || 0)].map((_, index) => <TextCard text={filesList![index].name}/>)}
-                </div>
-                <div className={styles.buttonsBlock}>
-                    <Button className={styles.button} color='info' component="label" variant="contained"
-                            size='small' startIcon={<CloudUploadIcon sx={{color: 'white'}}/>}
-                    >
-                        Загрузить изображения
-                        <VisuallyHiddenInput name='images' type="file" multiple={true}
-                                             onChange={e => handleSelectFiles(e)}/>
-                    </Button>
-                    <Button className={styles.button} type='submit' variant="contained" size='small'>Отправить</Button>
-                </div>
-            </form>
+                                {categories.map((category, index) => {
+                                    return <MenuItem key={category._id} value={category._id}>{category.title}</MenuItem>
+                                })}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth required={true}>
+                            <InputLabel id="unit-select-label">Единица</InputLabel>
+                            <Select name='unit'
+                                    required
+                                    labelId="unit-select-label"
+                                    value={activeCategory.unit}
+                                    onChange={e => handleInputSelect(e)}>
+                                <MenuItem value={'шт.'}>шт.</MenuItem>
+                                <MenuItem value={'кв.м.'}>кв.м.</MenuItem>
+                                <MenuItem value={'куб.м.'}>куб.м.</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <div className={styles.imageCardsContainer}>
+                            {[...Array(filesList?.length || 0)].map((_, index) => <TextCard
+                                text={filesList![index].name}/>)}
+                        </div>
+                        <div className={styles.buttonsBlock}>
+                            <Button className={styles.button} color='info' component="label" variant="contained"
+                                    size='small' startIcon={<CloudUploadIcon sx={{color: 'white'}}/>}
+                            >
+                                Загрузить изображения
+                                <VisuallyHiddenInput name='images' type="file" multiple={true}
+                                                     onChange={e => handleSelectFiles(e)}/>
+                            </Button>
+                            <Button className={styles.button} type='submit' variant="contained"
+                                    size='small'>Отправить</Button>
+                        </div>
+                    </form>
+            }
         </div>
-    )};
+    )
+};
 
 export default AddAd;

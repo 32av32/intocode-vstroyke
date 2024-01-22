@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Ad.module.scss'
-import {Button, CircularProgress, Rating} from "@mui/material";
+import {Alert, Button, CircularProgress, Rating} from "@mui/material";
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import Feedback from "../../components/Feedback";
@@ -17,7 +17,7 @@ import OrdersActionsContainer from "../../components/Account/OrdersActionsContai
 const Ad = () => {
     const dispatch = useAppDispatch()
     const { adId } = useParams()
-    const {detailAd, loading} = useAppSelector(state => state.ads)
+    const {detailAd, loading, errors} = useAppSelector(state => state.ads)
     const {user} = useAppSelector(state => state.user)
     const {reviews} = useAppSelector(state => state.reviews)
     const [activeImage, setActiveImage] = useState(0)
@@ -35,6 +35,7 @@ const Ad = () => {
     }
 
     return (
+        errors ? <Alert severity="error">{errors}</Alert> :
         loading ? <CircularProgress /> :
         <div className={styles.container}>
             <div>

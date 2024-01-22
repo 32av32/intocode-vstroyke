@@ -30,10 +30,10 @@ function App() {
                         <Route path='auth/login' element={<Auth variant={AuthEnum.Login} />} />
                         <Route path='account' element={<Account />}>
                             <Route index element={<UserAds />} />
-                            <Route path='settings' element={<AccountSettings />} />
                             <Route path='favorites' element={<FavoriteAds />} />
                             <Route path='edit_add' element={<AddAd />} />
                             <Route path='orders' element={<UserOrders />} />
+                            <Route path='settings' element={<AccountSettings />} />
                         </Route>
                         <Route path='account/ads/:adId' element={<Ad />} />
                         <Route path='/add_ad/' element={<AddAd />} />

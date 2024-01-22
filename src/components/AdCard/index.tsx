@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './AdCard.module.scss'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
-// import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import {Button} from "@mui/material";
 import { Link } from 'react-router-dom';
 import {IAd} from "../../types/adsTypes";
+// import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 
 type IProps = Pick<IAd, '_id' | 'title' | 'price' | 'unit' | 'rating' | 'images'>
 

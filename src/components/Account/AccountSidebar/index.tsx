@@ -9,12 +9,12 @@ import ProfileAvatar from "./ProfileAvatar";
 
 
 const AccountSidebar = () => {
-    const { _id, name, image } = useAppSelector(state => state.user.user)
+    const {name, image } = useAppSelector(state => state.user.user)
 
     return (
         <div className={styles.container}>
             <div className={styles.profile}>
-                <ProfileAvatar _id={_id} image={image} />
+                <ProfileAvatar image={image} />
                 <h2>{name}</h2>
                 <div className={styles.profile__rating}>
                     <h3>5.0</h3>

@@ -1,10 +1,6 @@
-export interface IAuth {
-    email: string
-    password: string
-}
+import {IUser} from "./userType";
 
-export interface IAuthUser {
-    id: string
-    email: string
+export interface IAuth {
+    user: IUser
     token: string
 }

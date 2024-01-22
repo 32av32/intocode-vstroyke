@@ -5,20 +5,20 @@ import Divider from "@mui/material/Divider";
 import {deleteAd, getUserAds} from "../../../createActions/adsActions";
 import {Link, useParams} from "react-router-dom";
 import AccountAdCard from "../AccountAdCard";
-import {Box, Button, IconButton, Modal, Popover} from "@mui/material";
+import {Alert, Box, Button, CircularProgress, IconButton, Modal, Popover} from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import {BoxModalStyle, boxPopoverStyle} from "../../../utils/mui";
 import AddAd from "../../../pages/AddAd";
 
 const UserAds = () => {
     const dispatch = useAppDispatch()
-    const {ads} = useAppSelector(state => state.ads)
-    const {id} = useParams()
+    const userId = useAppSelector(state => state.user.user._id)
+    const {ads, loading, errors} = useAppSelector(state => state.ads)
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
-        dispatch(getUserAds(id!))
+        dispatch(getUserAds(userId))
     }, []);
 
     const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +33,10 @@ const UserAds = () => {
 
     return (
         <div className={styles.container}>
-            {ads.map((ad, index) => {
+            {
+                (loading && <CircularProgress />) ||
+                (errors && <Alert severity="error">{errors}</Alert>) ||
+                ads.map((ad, index) => {
                 return (
                     <>
                         <div className={styles.card}>

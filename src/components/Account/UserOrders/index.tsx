@@ -6,12 +6,12 @@ import AccountAdCard from "../AccountAdCard";
 import {deleteOrders, getUserOrders} from "../../../createActions/ordersActions";
 import {IAd} from "../../../types/adsTypes";
 import {orderStatusMap} from "../../../types/ordersTypes";
-import {Button} from "@mui/material";
+import {Alert, Button, CircularProgress} from "@mui/material";
 import {Link} from "react-router-dom";
 
 const UserOrders = () => {
     const dispatch = useAppDispatch()
-    const {orders} = useAppSelector(state => state.orders)
+    const {orders, loading, errors} = useAppSelector(state => state.orders)
 
     useEffect(() => {
         dispatch(getUserOrders())
@@ -23,7 +23,10 @@ const UserOrders = () => {
 
     return (
         <div className={styles.container}>
-            {orders.map((orderItem, index) => {
+            {
+                (loading && <CircularProgress />) ||
+                (errors && <Alert severity="error">{errors}</Alert>) ||
+                orders.map((orderItem, index) => {
                 let ad = orderItem.ad as IAd
                 return (
                     <>
@@ -36,7 +39,7 @@ const UserOrders = () => {
                                 <div className={styles.actions}>
                                     <Button color={'error'} variant={'outlined'}
                                             onClick={() => handleDelete(orderItem._id)}>Убрать</Button>
-                                    <Button color={'warning'} variant={'outlined'}>Пожаловаться</Button>
+                                    <Button color={'warning'} variant={'contained'}>Пожаловаться</Button>
                                 </div>
                             </div>
                         </div>
