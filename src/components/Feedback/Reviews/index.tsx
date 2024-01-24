@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../Feedback.module.scss'
-import {Avatar, Button, Divider, Modal, Rating} from "@mui/material";
+import {Alert, Avatar, Button, CircularProgress, Divider, Modal, Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import SendReviewModal from "./SendReviewModal";
 import {useAppDispatch, useAppSelector} from "../../../hooks";
@@ -21,18 +21,20 @@ const getMark = (key: string) => {
 
 const Reviews = () => {
     const dispatch = useAppDispatch()
-    const {reviews} = useAppSelector(state => state.reviews)
+    const {reviews, loading, errors} = useAppSelector(state => state.reviews)
     const {_id} = useAppSelector(state => state.ads.detailAd)
     const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         dispatch(getReviews(_id))
-    }, []);
+    }, [_id]);
 
     return (
         <>
             <Button onClick={() => setOpenModal(true)}>Оставить отзыв</Button>
             {
+                (loading && <CircularProgress sx={{m: '0 auto'}}/>) ||
+                (errors && <Alert severity="error">{errors}</Alert>) ||
                 reviews.map((review, index) => {
                     return (
                         <div key={index} className={styles.review_container}>

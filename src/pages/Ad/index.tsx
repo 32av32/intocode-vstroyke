@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Ad.module.scss'
-import {Button, CircularProgress, Rating} from "@mui/material";
+import {Alert, Button, CircularProgress, Rating} from "@mui/material";
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import Feedback from "../../components/Feedback";
@@ -12,13 +12,16 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getAdById} from "../../createActions/adsActions";
 import {deleteFavorite, postFavorite} from "../../createActions/favoritesActions";
 import {IAdsUser} from "../../types/adsTypes";
+import OrdersActionsContainer from "../../components/Account/OrdersActionsContainer";
 
 const Ad = () => {
     const dispatch = useAppDispatch()
     const { adId } = useParams()
-    const {detailAd, loading} = useAppSelector(state => state.ads)
+    const {detailAd, loading, errors} = useAppSelector(state => state.ads)
+    const {user} = useAppSelector(state => state.user)
     const {reviews} = useAppSelector(state => state.reviews)
     const [activeImage, setActiveImage] = useState(0)
+    const questions = useAppSelector(state => state.questions.questions)
 
     useEffect(() => {
         dispatch(getAdById(adId!))
@@ -33,7 +36,8 @@ const Ad = () => {
     }
 
     return (
-        loading ? <CircularProgress /> :
+        errors ? <Alert severity="error">{errors}</Alert> :
+        loading ? <CircularProgress sx={{m: '0 auto'}}/> :
         <div className={styles.container}>
             <div>
                 <div className={styles.header}>
@@ -54,7 +58,7 @@ const Ad = () => {
                     </Link>
                     <Link className={styles.feedbackBlock} to={'reviews'} spy={true} smooth={true}>
                         <ContactSupportIcon color={'primary'}/>
-                        <span>7 вопросов</span>
+                        <span>{questions.length} вопросов</span>
                     </Link>
                 </div>
                 <div className={styles.imagesContainer}>
@@ -79,7 +83,11 @@ const Ad = () => {
                 </div>
                 <Feedback />
             </div>
-            <Communication {...detailAd.user as IAdsUser}/>
+            {
+                typeof detailAd.user !== 'string' && user._id === detailAd.user._id ?
+                    <OrdersActionsContainer /> :
+                    <Communication />
+            }
         </div>
     );
 };

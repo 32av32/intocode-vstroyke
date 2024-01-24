@@ -1,22 +1,20 @@
 import React from 'react';
 import styles from './Home.module.scss'
-import ProductCard from "../../components/ProductCard";
+import AdCard from "../../components/AdCard";
 import {useGetAdsQuery} from "../../services/adsServices";
-import {CircularProgress} from "@mui/material";
-import {useAppDispatch} from "../../hooks";
+import {Alert, CircularProgress} from "@mui/material";
 
 const Home = () => {
     const { data, isLoading, error } = useGetAdsQuery(null)
-    const dispatch = useAppDispatch()
 
     return (
         <div className={styles.container}>
             {
-                isLoading ? <CircularProgress /> :
+                isLoading ? <CircularProgress sx={{m: '0 auto'}} /> :
                 error ?
-                <div>Ошибка при загрузке данных</div> :
-                data!.map(ad => {
-                    return <ProductCard key={ad._id} _id={ad._id} title={ad.title} price={ad.price} unit={ad.unit} rating={ad.rating} images={ad.images} />
+                <Alert severity="error">Ошибка призагрузке данных</Alert> :
+                data && data.map(ad => {
+                    return <AdCard key={ad._id} _id={ad._id} title={ad.title} price={ad.price} unit={ad.unit} rating={ad.rating} images={ad.images} />
                 })
             }
         </div>

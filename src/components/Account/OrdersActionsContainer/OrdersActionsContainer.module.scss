@@ -1,0 +1,45 @@
+@import "../../../scss/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  min-width: 250px;
+
+  h3 {
+    text-align: center;
+  }
+
+  p, span {
+    color: $gray;
+    font-style: italic;
+  }
+  
+  span {
+    text-align: center;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.ordersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .orderItem {
+    display: flex;
+    gap: 15px;
+
+    .orderItem__content {
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}

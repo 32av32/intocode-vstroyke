@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const Auth = ({ variant }: IProps) => {
-    const {authStatus,  errors} = useAppSelector(state => state.auth)
+    const {status,  errors} = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
     const [inputValue, setInputValue] = useState({name: '', email: '', password: ''})
     const navigate = useNavigate()
@@ -31,17 +31,17 @@ const Auth = ({ variant }: IProps) => {
                 break
             }
             case AuthEnum.Login: {
-                dispatch(postLogin(inputValue))
+                dispatch(postLogin({email: inputValue.email, password: inputValue.password}))
                 break
             }
         }
     }
 
     useEffect(() => {
-        if (authStatus === 200) {
+        if (status === 200) {
             navigate('/auth/login')
         }
-    }, [authStatus])
+    }, [status])
 
     // useEffect(() => {
     //     if (user) {

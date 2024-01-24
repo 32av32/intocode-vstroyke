@@ -5,7 +5,7 @@ export interface IAd {
     _id: string
     title: string
     description: string
-    user: string | IAdsUser
+    user: IAdsUser
     category: string
     images: [string]
     address: string
@@ -13,6 +13,7 @@ export interface IAd {
     unit: string
     rating: number
     favorite?: string
+    orderStatus?: 'pending' | 'processing' | 'fulfilled' | 'rejected'
 }
 
 // export interface IUsersAd extends IAd{

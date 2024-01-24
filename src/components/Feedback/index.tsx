@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from './Feedback.module.scss'
 import Reviews from "./Reviews";
 import {Tab, Tabs} from "@mui/material";
+import Questions from './Questions';
 
 const Feedback = () => {
     const [activeTab, setActiveTab] = useState(0)
@@ -17,6 +18,7 @@ const Feedback = () => {
                 <Tab sx={{fontSize: '1.1rem'}} label="Вопросы" />
             </Tabs>
             { activeTab === 0 && <Reviews /> }
+            { activeTab === 1 && <Questions/>}
         </div>
     );
 };

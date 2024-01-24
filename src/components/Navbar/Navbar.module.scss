@@ -1,5 +1,37 @@
 @import '../../scss/variables';
 
+.navContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .nav__main {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 35px;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      &:hover {
+        span {
+          color: white;
+        }
+        svg {
+          fill: white;
+        }
+      }
+    }
+  }
+}
+
 .logo {
   & p {
     color: $black;
@@ -11,24 +43,5 @@
 
   & p:hover {
     color: white;
-  }
-}
-
-.link {
-  color: $black;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  & span {
-    color: $black;
-  }
-
-  &:hover {
-    color: white;
-
-    & span {
-      color: white;
-    }
   }
 }

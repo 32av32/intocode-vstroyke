@@ -1,11 +1,11 @@
-@import '../../scss/variables';
+@import '../../../scss/variables';
 
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 200px;
+  width: 300px;
 
   .profile {
     display: flex;
@@ -62,7 +62,6 @@
 }
 
 .uploadedImage {
-
   img {
     border-radius: 10px;
     max-width: 100%;

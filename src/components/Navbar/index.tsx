@@ -11,13 +11,13 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import LoginIcon from '@mui/icons-material/Login';
 import Categories from "../Categories";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {logOut} from "../../slices/authSlice";
 import {getCategories} from "../../createActions/commonActions";
+import {logOut} from "../../slices/userSlice";
 
 
 const Navbar = () => {
     const dispatch = useAppDispatch()
-    const {userId} = useAppSelector(state => state.auth)
+    const {_id} = useAppSelector(state => state.user.user)
     const linkStyle = useRef({
         color: '#232323',
         '&:hover': {
@@ -35,65 +35,44 @@ const Navbar = () => {
     return (
         <AppBar position={'static'}>
             <Toolbar>
-                <Grid container justifyContent={'space-between'} alignItems={'center'}>
-                    <Grid item>
-                        <Grid container spacing={15} alignItems={'center'}>
-                            <Grid item>
-                                <Link className={styles.logo} to="/">
-                                    <Typography>VStroyke</Typography>
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Search/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item>
-                        <Grid container spacing={5} alignItems={'center'}>
-                            <Grid item>
+                <div className={styles.navContainer}>
+                    <div className={styles.nav__main}>
+                        <Link className={styles.logo} to="/">
+                            <Typography>VStroyke</Typography>
+                        </Link>
+                        <Search/>
+                    </div>
+                    {
+                        _id ?
+                            <div className={styles.nav__links}>
                                 <Link to={`/account/favorites`}>
                                     <FavoriteRoundedIcon sx={linkStyle.current}/>
                                 </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link to={'/'}>
+                                <Link to={'/account/orders'}>
                                     <ShoppingCartIcon sx={linkStyle.current}/>
                                 </Link>
-                            </Grid>
-                            {userId ?
-                                <>
-                                    <Grid item>
-                                        <Link to={`/account`}>
-                                            <AccountCircleRoundedIcon sx={linkStyle.current}/>
-                                        </Link>
-                                    </Grid>
-                                    <Grid item>
-                                        <Link to='/' onClick={handleLogOut}>
-                                            <LogoutIcon sx={linkStyle.current}/>
-                                        </Link>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size='small' color='info' variant='contained'>
-                                            <Link to={'/add_ad'}>Разместить объявление</Link>
-                                        </Button>
-                                    </Grid>
-                                </>
-                                :
-                                <>
-                                    <Grid item>
-                                        <Link to={'/auth/signup'}>
-                                            <VpnKeyIcon sx={linkStyle.current}/>
-                                        </Link>
-                                    </Grid>
-                                    <Grid item>
-                                        <Link to={'/auth/login'}>
-                                            <LoginIcon sx={linkStyle.current}/>
-                                        </Link>
-                                    </Grid>
-                                </>}
-                        </Grid>
-                    </Grid>
-                </Grid>
+                                <Link to={`/account`}>
+                                    <AccountCircleRoundedIcon sx={linkStyle.current}/>
+                                </Link>
+                                <Link to='/' onClick={handleLogOut}>
+                                    <LogoutIcon sx={linkStyle.current}/>
+                                </Link>
+                                <Button size='small' color='info' variant='contained'>
+                                    <Link to={'/add_ad'}>Разместить объявление</Link>
+                                </Button>
+                            </div> :
+                            <div className={styles.nav__links}>
+                                <Link to={'/auth/signup'}>
+                                    <span>Регистрация</span>
+                                    <VpnKeyIcon sx={linkStyle.current}/>
+                                </Link>
+                                <Link to={'/auth/login'}>
+                                    <span>Вход</span>
+                                    <LoginIcon sx={linkStyle.current}/>
+                                </Link>
+                            </div>
+                    }
+                </div>
             </Toolbar>
             <Toolbar>
                 <Categories/>

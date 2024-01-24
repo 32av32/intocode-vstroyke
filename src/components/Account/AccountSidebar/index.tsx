@@ -4,18 +4,18 @@ import Divider from '@mui/material/Divider';
 import {Rating} from "@mui/material";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import LinksSideBar from "./LinksSideBar";
-import {useAppSelector} from "../../hooks";
+import {useAppSelector} from "../../../hooks";
 import ProfileAvatar from "./ProfileAvatar";
 
 
 const AccountSidebar = () => {
-    const { _id, email, image } = useAppSelector(state => state.user.user)
+    const {name, image } = useAppSelector(state => state.user.user)
 
     return (
         <div className={styles.container}>
             <div className={styles.profile}>
-                <ProfileAvatar _id={_id} image={image} />
-                <h2>{email}</h2>
+                <ProfileAvatar image={image} />
+                <h2>{name}</h2>
                 <div className={styles.profile__rating}>
                     <h3>5.0</h3>
                     <Rating

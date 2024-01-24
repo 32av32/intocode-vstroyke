@@ -3,7 +3,7 @@ import {IAuth} from "../types/authTypes";
 import axios from "axios";
 import {Urls} from "../utils/urls";
 
-export const postSignup = createAsyncThunk('postSignup', async (data: IAuth, thunkApi) => {
+export const postSignup = createAsyncThunk('postSignup', async (data: {name: string, email: string, password: string}, thunkApi) => {
     try {
         const response = await axios.post(Urls.AuthSignup, data)
         if (response.status !== 200) {
@@ -15,7 +15,7 @@ export const postSignup = createAsyncThunk('postSignup', async (data: IAuth, thu
     }
 })
 
-export const postLogin = createAsyncThunk('postLogin', async (data: IAuth, thunkApi) => {
+export const postLogin = createAsyncThunk('postLogin', async (data: {email: string, password: string}, thunkApi) => {
     try {
         const response = await axios.post(Urls.AuthLogin, data)
         if (response.status !== 200) {

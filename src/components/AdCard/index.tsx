@@ -1,15 +1,15 @@
 import React from 'react';
-import styles from './ProductCard.module.scss'
+import styles from './AdCard.module.scss'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
-// import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import {Button} from "@mui/material";
 import { Link } from 'react-router-dom';
 import {IAd} from "../../types/adsTypes";
+// import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 
 type IProps = Pick<IAd, '_id' | 'title' | 'price' | 'unit' | 'rating' | 'images'>
 
-const ProductCard = ({ _id, title, price, unit, rating, images }:IProps) => {
+const AdCard = ({ _id, title, price, unit, rating, images }:IProps) => {
     return (
         <div className={styles.container} >
             <div className={styles.productImage}>
@@ -27,18 +27,16 @@ const ProductCard = ({ _id, title, price, unit, rating, images }:IProps) => {
                     <span>100 отзыва</span>
                 </div>
             </div>
-            {
-                <div className={styles.actions}>
-                    <Button variant="contained" size='small'>
-                        <Link to={`/ads/${_id}`}>Больше</Link>
-                    </Button>
-                    {/*<div className={styles.favorite}>*/}
-                    {/*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*/}
-                    {/*</div>*/}
-                </div>
-            }
+            <div className={styles.actions}>
+                <Button  color={'primary'} size='small'>
+                    <Link to={`/ads/${_id}`}>Больше</Link>
+                </Button>
+                {/*<div className={styles.favorite}>*/}
+                {/*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*/}
+                {/*</div>*/}
+            </div>
         </div>
     );
 };
 
-export default ProductCard;
+export default AdCard;

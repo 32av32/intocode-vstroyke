@@ -11,10 +11,13 @@ import Auth from "./pages/Auth";
 import {AuthEnum} from "./types/enums";
 import Account from "./pages/Account";
 import AddAd from "./pages/AddAd";
-import AccountSettings from "./components/AccountSettings";
-import UserAds from "./components/UserAds";
-import FavoriteAds from "./components/FavoriteAds";
+
 import Chat from './components/Chat/chat';
+import AccountSettings from "./components/Account/AccountSettings";
+import UserAds from "./components/Account/UserAds";
+import FavoriteAds from "./components/Account/FavoriteAds";
+import UserOrders from "./components/Account/UserOrders";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
     return (
@@ -29,17 +32,19 @@ function App() {
                         <Route path='auth/login' element={<Auth variant={AuthEnum.Login} />} />
                         <Route path='account' element={<Account />}>
                             <Route index element={<UserAds />} />
-                            <Route path='settings' element={<AccountSettings />} />
                             <Route path='favorites' element={<FavoriteAds />} />
                             <Route path='edit_add' element={<AddAd />} />
+                            <Route path='orders' element={<UserOrders />} />
+                            <Route path='settings' element={<AccountSettings />} />
                         </Route>
+                        <Route path='account/ads/:adId' element={<Ad />} />
                         <Route path='/add_ad/' element={<AddAd />} />
+                        <Route path='/users/:id' element={<UserProfile />} />
                     </Routes>
                     <Chat />
                 </div>
             </ThemeProvider>
         </div>
-
     );
 }
 
