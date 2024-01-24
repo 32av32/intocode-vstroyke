@@ -1,0 +1,47 @@
+@import "../../scss/variables";
+
+
+.container {
+  display: flex;
+  gap: 50px;
+}
+
+.profileSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 300px;
+
+  button {
+    width: 180px;
+  }
+
+  .grayText {
+    color: $gray;
+  }
+
+  .profileRating {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+}
+
+.adsContainer {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+
+  .formRating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

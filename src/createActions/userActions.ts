@@ -34,3 +34,20 @@ export const patchAccount = createAsyncThunk('patchAccount', async (formData: Fo
         return thunkApi.rejectWithValue('Ошибка при получении профиля')
     }
 })
+
+export const getUserProfile = createAsyncThunk('getUserProfile', async (id: string, thunkApi) => {
+    try {
+
+        const response = await axios.get(`${Urls.Users}/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue(response.data.error)
+        }
+        return response.data
+    } catch(e) {
+        return thunkApi.rejectWithValue('Ошибка при получении профиля')
+    }
+})

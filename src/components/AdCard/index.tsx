@@ -27,16 +27,14 @@ const AdCard = ({ _id, title, price, unit, rating, images }:IProps) => {
                     <span>100 отзыва</span>
                 </div>
             </div>
-            {
-                <div className={styles.actions}>
-                    <Button variant="contained" size='small'>
-                        <Link to={`/ads/${_id}`}>Больше</Link>
-                    </Button>
-                    {/*<div className={styles.favorite}>*/}
-                    {/*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*/}
-                    {/*</div>*/}
-                </div>
-            }
+            <div className={styles.actions}>
+                <Button  color={'primary'} size='small'>
+                    <Link to={`/ads/${_id}`}>Больше</Link>
+                </Button>
+                {/*<div className={styles.favorite}>*/}
+                {/*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*/}
+                {/*</div>*/}
+            </div>
         </div>
     );
 };
