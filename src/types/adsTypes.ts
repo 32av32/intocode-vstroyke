@@ -5,7 +5,7 @@ export interface IAd {
     _id: string
     title: string
     description: string
-    user: string | IAdsUser
+    user: IAdsUser
     category: string
     images: [string]
     address: string

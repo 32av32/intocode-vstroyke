@@ -9,6 +9,7 @@ import usersSlice from "../slices/usersSlice";
 
 const store = configureStore({
     reducer: {
+        questions: questionsSlice,
         ads: adsSlice,
         common: commonSlice,
         user: userSlice,
