@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IAd} from "../types/adsTypes";
-import {deleteAd, getAdById, getUserAds, patchAd, postAd} from "../createActions/adsActions";
+import {deleteAd, getAdById, getAds, getUserAds, patchAd, postAd} from "../createActions/adsActions";
 import {deleteFavorite, getUserFavorites, postFavorite} from "../createActions/favoritesActions";
 
 interface IInitialState {
@@ -43,7 +43,20 @@ const adsSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(postAd.fulfilled, (state, action: PayloadAction<IAd>) => {
+        builder.addCase(getAds.fulfilled, (state, action: PayloadAction<IAd[]>) => {
+            state.loading = false
+            state.errors = null
+            state.ads = action.payload
+        })
+            .addCase(getAds.pending, (state) => {
+                state.loading = true
+                state.errors = null
+            })
+            .addCase(getAds.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload as string
+            })
+            .addCase(postAd.fulfilled, (state, action: PayloadAction<IAd>) => {
             state.loading = false
             state.errors = null
             state.ads.push(action.payload)

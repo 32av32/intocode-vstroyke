@@ -12,12 +12,16 @@
   @include link-flex;
 
   span {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   &:hover {
     & span {
       color: white;
     }
+  }
+
+  .active {
+    color: white;
   }
 }

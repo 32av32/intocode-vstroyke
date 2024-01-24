@@ -3,6 +3,19 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {Urls} from "../utils/urls";
 
+export const getAds = createAsyncThunk('getAds', async (query: string, thunkApi) => {
+    try {
+        console.log(`${Urls.Ads}?${query}`)
+        const response = await axios.get(`${Urls.Ads}?${query}`)
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue(response.data.error)
+        }
+        return response.data
+    } catch(e) {
+        return thunkApi.rejectWithValue('Ошибка при при получении объявлении')
+    }
+})
+
 export const postAd = createAsyncThunk('postAd', async (form: FormData, thunkApi) => {
     try {
         const response = await axios.post(Urls.Ads, form, {
