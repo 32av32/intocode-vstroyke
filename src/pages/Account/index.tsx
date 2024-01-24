@@ -17,13 +17,11 @@ const Account = () => {
 
     return (
             <div className={styles.container}>
-                {
-                    (loading && <CircularProgress sx={{m: '0 auto'}}/>) ||
-                    (errors && <Alert severity="error">{errors}</Alert>) ||
-                    <div className={styles.content}>
-                        <Outlet />
-                    </div>
-                }
+                {loading ? <CircularProgress sx={{m: '0 auto'}}/> : <AccountSidebar/>}
+                {errors && <Alert severity="error">{errors}</Alert>}
+                <div className={styles.content}>
+                    <Outlet />
+                </div>
             </div>
     );
 };
