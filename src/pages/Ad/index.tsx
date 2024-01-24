@@ -21,6 +21,7 @@ const Ad = () => {
     const {user} = useAppSelector(state => state.user)
     const {reviews} = useAppSelector(state => state.reviews)
     const [activeImage, setActiveImage] = useState(0)
+    const questions = useAppSelector(state => state.questions.questions)
 
     useEffect(() => {
         dispatch(getAdById(adId!))
@@ -57,7 +58,7 @@ const Ad = () => {
                     </Link>
                     <Link className={styles.feedbackBlock} to={'reviews'} spy={true} smooth={true}>
                         <ContactSupportIcon color={'primary'}/>
-                        <span>7 вопросов</span>
+                        <span>{questions.length} вопросов</span>
                     </Link>
                 </div>
                 <div className={styles.imagesContainer}>

@@ -5,9 +5,11 @@ import commonSlice from "../slices/commonSlice";
 import userSlice from "../slices/userSlice";
 import reviewsSlice from "../slices/reviewsSlice";
 import ordersSlice from "../slices/ordersSlice";
+import questionsSlice from '../slices/questionsSlice';
 
 const store = configureStore({
     reducer: {
+        questions: questionsSlice,
         ads: adsSlice,
         common: commonSlice,
         user: userSlice,
