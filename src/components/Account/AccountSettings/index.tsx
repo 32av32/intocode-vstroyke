@@ -44,7 +44,7 @@ const AccountSettings = () => {
         <div className={styles.container}>
             {
                 loading ?
-                    <CircularProgress/> :
+                    <CircularProgress sx={{m: '0 auto'}}/> :
                     <form ref={formRef} onSubmit={e => handleSubmit(e)}>
                         <h2>Настройки аккаунта</h2>
                         {success && <Alert severity="success">Объявление успешно добавлено</Alert>}

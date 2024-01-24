@@ -23,7 +23,7 @@ const FavoriteAds = () => {
     return (
         <div className={styles.container}>
             {
-                (loading && <CircularProgress />) ||
+                (loading && <CircularProgress sx={{m: '0 auto'}} />) ||
                 (errors && <Alert severity="error">{errors}</Alert>) ||
                 favoriteAds.map((ad, index) => {
                 return (

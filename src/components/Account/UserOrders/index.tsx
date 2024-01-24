@@ -24,7 +24,7 @@ const UserOrders = () => {
     return (
         <div className={styles.container}>
             {
-                (loading && <CircularProgress />) ||
+                (loading && <CircularProgress sx={{m: '0 auto'}}/>) ||
                 (errors && <Alert severity="error">{errors}</Alert>) ||
                 orders.map((orderItem, index) => {
                 let ad = orderItem.ad as IAd

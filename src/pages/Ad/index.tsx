@@ -36,7 +36,7 @@ const Ad = () => {
 
     return (
         errors ? <Alert severity="error">{errors}</Alert> :
-        loading ? <CircularProgress /> :
+        loading ? <CircularProgress sx={{m: '0 auto'}}/> :
         <div className={styles.container}>
             <div>
                 <div className={styles.header}>

@@ -34,7 +34,7 @@ const UserAds = () => {
     return (
         <div className={styles.container}>
             {
-                (loading && <CircularProgress />) ||
+                (loading && <CircularProgress sx={{m: '0 auto'}}/>) ||
                 (errors && <Alert severity="error">{errors}</Alert>) ||
                 ads.map((ad, index) => {
                 return (

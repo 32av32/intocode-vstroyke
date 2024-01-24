@@ -27,7 +27,7 @@ const UserProfile = () => {
         <div className={styles.container}>
             <div className={styles.profileSidebar}>
                 {
-                    (users.loading && <CircularProgress/>) ||
+                    (users.loading && <CircularProgress sx={{m: '0 auto'}}/>) ||
                     (users.errors && <Alert severity="error">{errors}</Alert>) ||
                     <>
                         <Avatar sx={{width: '150px', height: '150px'}} alt="profile photo"
