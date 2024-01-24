@@ -14,6 +14,7 @@ import AddAd from "./pages/AddAd";
 import AccountSettings from "./components/AccountSettings";
 import UserAds from "./components/UserAds";
 import FavoriteAds from "./components/FavoriteAds";
+import Chat from './components/Chat/chat';
 
 function App() {
     return (
@@ -34,6 +35,7 @@ function App() {
                         </Route>
                         <Route path='/add_ad/' element={<AddAd />} />
                     </Routes>
+                    <Chat />
                 </div>
             </ThemeProvider>
         </div>
