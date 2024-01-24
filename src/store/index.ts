@@ -5,7 +5,7 @@ import commonSlice from "../slices/commonSlice";
 import userSlice from "../slices/userSlice";
 import reviewsSlice from "../slices/reviewsSlice";
 import ordersSlice from "../slices/ordersSlice";
-import questionsSlice from '../slices/questionsSlice';
+import usersSlice from "../slices/usersSlice";
 
 const store = configureStore({
     reducer: {
@@ -15,6 +15,7 @@ const store = configureStore({
         user: userSlice,
         reviews: reviewsSlice,
         orders: ordersSlice,
+        users: usersSlice,
         [adsApi.reducerPath]: adsApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

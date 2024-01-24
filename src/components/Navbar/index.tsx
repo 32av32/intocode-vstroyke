@@ -48,7 +48,7 @@ const Navbar = () => {
                                 <Link to={`/account/favorites`}>
                                     <FavoriteRoundedIcon sx={linkStyle.current}/>
                                 </Link>
-                                <Link to={'/'}>
+                                <Link to={'/account/orders'}>
                                     <ShoppingCartIcon sx={linkStyle.current}/>
                                 </Link>
                                 <Link to={`/account`}>

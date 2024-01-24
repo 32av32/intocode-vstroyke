@@ -23,6 +23,7 @@ const commonSlice = createSlice({
             state.loading = false
             state.errors = null
             state.categories = action.payload
+            state.categories.unshift({_id: '0', title: 'Все', description: 'Все'})
         })
             .addCase(getCategories.pending, (state) => {
                 state.loading = true

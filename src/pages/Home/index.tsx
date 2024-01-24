@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
             {
-                isLoading ? <CircularProgress /> :
+                isLoading ? <CircularProgress sx={{m: '0 auto'}} /> :
                 error ?
                 <Alert severity="error">Ошибка призагрузке данных</Alert> :
                 data && data.map(ad => {

@@ -44,14 +44,14 @@ const AccountSettings = () => {
         <div className={styles.container}>
             {
                 loading ?
-                    <CircularProgress/> :
+                    <CircularProgress sx={{m: '0 auto'}}/> :
                     <form ref={formRef} onSubmit={e => handleSubmit(e)}>
                         <h2>Настройки аккаунта</h2>
                         {success && <Alert severity="success">Объявление успешно добавлено</Alert>}
                         {errors && <Alert severity="error">{errors}</Alert>}
-                        <TextField name='name' required={true} label="Имя/Название" variant="standard"
+                        <TextField fullWidth name='name' required={true} label="Имя/Название" variant="standard"
                                    defaultValue={user.name}/>
-                        <TextField name='phone' required={true} label="Телефон" variant="standard"
+                        <TextField fullWidth name='phone' required={true} label="Телефон" variant="standard"
                                    defaultValue={user.phone}/>
                         <FormControl fullWidth variant='standard'>
                             <InputLabel id="category-select-label">Категория</InputLabel>

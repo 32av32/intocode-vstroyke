@@ -92,7 +92,7 @@ const AddAd = ({variant='', _id='', title='', description='', address='', price=
         <div className={styles.container}>
             {
                 loading ?
-                    <CircularProgress/> :
+                    <CircularProgress sx={{m: '0 auto'}}/> :
                     <form ref={formRef} onSubmit={e => handleSubmit(e)}>
                         {success && <Alert severity="success">Объявление успешно добавлено</Alert>}
                         {errors && <Alert severity="error">{errors}</Alert>}

@@ -28,7 +28,7 @@ const AccountAdCard = ({category, images, title, price, unit, rating}: IAd) => {
                     <Rating
                         name="read-only" value={rating} precision={0.5} readOnly
                         icon={<StarRateRoundedIcon sx={{color: 'gold'}} fontSize='inherit'/>}
-                        emptyIcon={<StarRateRoundedIcon sx={{}} fontSize='inherit'/>}
+                        emptyIcon={<StarRateRoundedIcon fontSize='inherit'/>}
                     />
                 </h4>
             </div>
