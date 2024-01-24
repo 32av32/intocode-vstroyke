@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Questions.module.scss'
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { addQuestions, getQuestions } from '../../../createActions/questionsActions';
+import { addQuestion, getQuestions } from '../../../createActions/questionsActions';
 import { Input } from '@mui/material';
 
 const Questions = () => {
@@ -22,7 +22,7 @@ const Questions = () => {
 
     const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        dispatch(addQuestions({questionText: text, ad: _id}))
+        dispatch(addQuestion({questionText: text, ad: _id}))
         setText('')
     }
 

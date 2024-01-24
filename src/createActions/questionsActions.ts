@@ -1,21 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { IQuestions } from "../types/questionsTypes"
-// import axios from "axios"
-// import { Urls } from "../utils/urls"
-
-// export const getQuestions = createAsyncThunk('questions/getQuestions', async (adId: string, thunkApi) => {
-//     try {
-//         console.log('getques');
-        
-//         const response = await axios.get(`${Urls.Questions}/${adId}`)
-//         if (response.status !== 200) {
-//             return thunkApi.rejectWithValue(response.data.error)
-//         }       
-//         return response.data
-//     } catch (error) {
-//         return thunkApi.rejectWithValue(error)
-//     }
-// })
+import axios from "axios"
 
 export const getQuestions = createAsyncThunk('questions/getQuestions', async (data: string, thunkApi) => {
     try {
@@ -27,8 +12,7 @@ export const getQuestions = createAsyncThunk('questions/getQuestions', async (da
     }
 })
 
-
-export const addQuestions = createAsyncThunk('questions/add', async ({questionText, ad}: {questionText: string, ad: string}, thunkApi) => {
+export const addQuestion = createAsyncThunk('questions/addQuestion', async ({questionText, ad}: {questionText: string, ad: string}, thunkApi) => {
     try {
         const res = await fetch('http://localhost:4000/questions', {
             method: 'POST',
@@ -40,6 +24,19 @@ export const addQuestions = createAsyncThunk('questions/add', async ({questionTe
         })
         const question = await res.json()
         return thunkApi.fulfillWithValue(question)
+    } catch (error) {
+        return thunkApi.rejectWithValue(error)
+    }
+})
+
+export const patchQuestion = createAsyncThunk('questions/patchQuestion', async ({id, answer}:{id: string, answer: string}, thunkApi) => {
+    try {
+        const res = await axios.patch(`http://localhost:4000/questions/${id}`, {answer}, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        return res.data
     } catch (error) {
         return thunkApi.rejectWithValue(error)
     }
