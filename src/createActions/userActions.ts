@@ -13,7 +13,6 @@ export const getAccount = createAsyncThunk('getAccount', async (_, thunkApi) => 
         if (response.status !== 200) {
             return thunkApi.rejectWithValue(response.data.error)
         }
-        console.log(response.data)
         return response.data
     } catch(e) {
         return thunkApi.rejectWithValue('Ошибка при получении профиля')

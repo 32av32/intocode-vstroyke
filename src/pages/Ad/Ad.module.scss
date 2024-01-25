@@ -13,7 +13,15 @@
   .header {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+    }
   }
 
   .action {

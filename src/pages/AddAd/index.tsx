@@ -97,11 +97,13 @@ const AddAd = ({variant='', _id='', title='', description='', address='', price=
                         {success && <Alert severity="success">Объявление успешно добавлено</Alert>}
                         {errors && <Alert severity="error">{errors}</Alert>}
                         <TextField name='title'
+                                   fullWidth
                                    value={inputValues.title}
                                    required
                                    label="Название"
                                    onChange={e => handleInputChange(e)}/>
                         <TextField name='description'
+                                   fullWidth
                                    value={inputValues.description}
                                    required
                                    label="Описание"
@@ -109,11 +111,13 @@ const AddAd = ({variant='', _id='', title='', description='', address='', price=
                                    maxRows={4}
                                    onChange={e => handleInputChange(e)}/>
                         <TextField name='address'
+                                   fullWidth
                                    value={inputValues.address}
                                    required
                                    label="Адрес"
                                    onChange={e => handleInputChange(e)}/>
                         <TextField name='price'
+                                   fullWidth
                                    value={inputValues.price}
                                    required
                                    label="Цена"
