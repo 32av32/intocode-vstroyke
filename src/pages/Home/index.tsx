@@ -1,19 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Home.module.scss'
 import AdCard from "../../components/AdCard";
-import {useGetAdsQuery} from "../../services/adsServices";
 import {Alert, CircularProgress} from "@mui/material";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {getAds} from "../../createActions/adsActions";
+import {SearchContext} from "../../App";
 
 const Home = () => {
-    const { data, isLoading, error } = useGetAdsQuery(null)
+    const {searchValue, categoryValue} = React.useContext(SearchContext)
+    const dispatch = useAppDispatch()
+    const {ads, loading, errors} = useAppSelector(state => state.ads)
+
+    useEffect(() => {
+        const query = categoryValue !== '0' ? `category=${categoryValue}&title=${searchValue}` : `title=${searchValue}`
+        dispatch(getAds(query))
+    }, [searchValue, categoryValue]);
 
     return (
         <div className={styles.container}>
             {
-                isLoading ? <CircularProgress sx={{m: '0 auto'}} /> :
-                error ?
-                <Alert severity="error">Ошибка призагрузке данных</Alert> :
-                data && data.map(ad => {
+                loading ? <CircularProgress sx={{m: '0 auto'}} /> :
+                errors ?
+                <Alert severity="error">Ошибка при загрузке данных</Alert> :
+                ads.map(ad => {
                     return <AdCard key={ad._id} _id={ad._id} title={ad.title} price={ad.price} unit={ad.unit} rating={ad.rating} images={ad.images} />
                 })
             }

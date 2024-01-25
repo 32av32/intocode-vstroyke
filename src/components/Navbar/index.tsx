@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './Navbar.module.scss'
 import {Link} from 'react-router-dom'
 import {AppBar, Button, Grid, Toolbar, Typography} from "@mui/material";
@@ -13,6 +13,7 @@ import Categories from "../Categories";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getCategories} from "../../createActions/commonActions";
 import {logOut} from "../../slices/userSlice";
+import {getAds} from "../../createActions/adsActions";
 
 
 const Navbar = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './scss/main.scss'
 import styles from './App.module.scss'
 import Navbar from "./components/Navbar";
@@ -19,32 +19,44 @@ import FavoriteAds from "./components/Account/FavoriteAds";
 import UserOrders from "./components/Account/UserOrders";
 import UserProfile from "./pages/UserProfile";
 
+export interface ISearchContext {
+    searchValue: string
+    setSearchValue?: React.Dispatch<React.SetStateAction<string>>
+    categoryValue: string
+    setCategoryValue?: React.Dispatch<React.SetStateAction<string>>
+}
+export const SearchContext = React.createContext<ISearchContext>({searchValue: '', categoryValue: ''});
+
 function App() {
+    const [searchValue, setSearchValue] = useState('')
+    const [categoryValue, setCategoryValue] = useState('')
+
     return (
-        <div className={styles.container}>
-            <ThemeProvider theme={theme}>
-                <Navbar/>
-                <div className={styles.content}>
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='ads/:adId' element={<Ad />} />
-                        <Route path='auth/signup' element={<Auth variant={AuthEnum.Signup} />} />
-                        <Route path='auth/login' element={<Auth variant={AuthEnum.Login} />} />
-                        <Route path='account' element={<Account />}>
-                            <Route index element={<UserAds />} />
-                            <Route path='favorites' element={<FavoriteAds />} />
-                            <Route path='edit_add' element={<AddAd />} />
-                            <Route path='orders' element={<UserOrders />} />
-                            <Route path='settings' element={<AccountSettings />} />
-                        </Route>
-                        <Route path='account/ads/:adId' element={<Ad />} />
-                        <Route path='/add_ad/' element={<AddAd />} />
-                        <Route path='/users/:id' element={<UserProfile />} />
-                    </Routes>
-                    <Chat />
-                </div>
-            </ThemeProvider>
-        </div>
+        < SearchContext.Provider value={{searchValue, setSearchValue, categoryValue, setCategoryValue}}>
+            <div className={styles.container}>
+                <ThemeProvider theme={theme}>
+                    <Navbar/>
+                    <div className={styles.content}>
+                        <Routes>
+                            <Route path='/' element={<Home/>}/>
+                            <Route path='ads/:adId' element={<Ad/>}/>
+                            <Route path='auth/signup' element={<Auth variant={AuthEnum.Signup}/>}/>
+                            <Route path='auth/login' element={<Auth variant={AuthEnum.Login}/>}/>
+                            <Route path='account' element={<Account/>}>
+                                <Route index element={<UserAds/>}/>
+                                <Route path='favorites' element={<FavoriteAds/>}/>
+                                <Route path='edit_add' element={<AddAd/>}/>
+                                <Route path='orders' element={<UserOrders/>}/>
+                                <Route path='settings' element={<AccountSettings/>}/>
+                            </Route>
+                            <Route path='account/ads/:adId' element={<Ad/>}/>
+                            <Route path='/add_ad/' element={<AddAd/>}/>
+                            <Route path='/users/:id' element={<UserProfile/>}/>
+                        </Routes>
+                    </div>
+                </ThemeProvider>
+            </div>
+        </SearchContext.Provider>
     );
 }
 

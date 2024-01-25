@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {alpha, InputBase, styled} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import {useAppDispatch} from "../../hooks";
+import {getAds} from "../../createActions/adsActions";
+import {SearchContext} from "../../App";
 
 const SearchTag = styled('div')(({theme}) => ({
     position: 'relative',
@@ -47,13 +50,25 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 }));
 
 const Search = () => {
+    const {setSearchValue} = React.useContext(SearchContext)
+    const [value, setValue] = useState('')
+
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setValue(e.target.value)
+        if (setSearchValue) {
+            setSearchValue(e.target.value)
+        }
+    }
+
     return (
         <SearchTag>
             <SearchIconWrapper>
                 <SearchIcon/>
             </SearchIconWrapper>
             <StyledInputBase
-                placeholder="Search…"
+                placeholder='Поиск…'
+                value={value}
+                onChange={e => handleChangeInput(e)}
             />
         </SearchTag>
     );
