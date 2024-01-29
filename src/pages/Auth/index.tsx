@@ -66,7 +66,7 @@ const Auth = ({ variant }: IProps) => {
                     <TextField
                         required
                         name='email'
-                        label="Email"
+                        label="Логин"
                         value={inputValue.email}
                         onChange={e => handleInputChange(e)}
                     />
