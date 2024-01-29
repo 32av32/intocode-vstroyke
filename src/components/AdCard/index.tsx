@@ -22,19 +22,27 @@ const AdCard = ({ _id, title, price, unit, rating, images }:IProps) => {
                     <StarRateRoundedIcon htmlColor={'gold'} fontSize='small'/>
                     <span>{rating}</span>
                 </div>
-                <div className={styles.comments}>
-                    <ChatBubbleIcon fontSize='small' sx={{ color: '#757575' }} />
-                    <span>100 отзыва</span>
+                {/*<div className={styles.comments}>*/}
+                {/*    <ChatBubbleIcon fontSize='small' sx={{ color: '#757575' }} />*/}
+                {/*    <span>100 отзыва</span>*/}
+                {/*</div>*/}
+                <div className={styles.actions}>
+                    <Button color={'primary'} size='small'>
+                        <Link to={`/ads/${_id}`}>Больше</Link>
+                    </Button>
+                    {/*<div className={styles.favorite}>*/}
+                    {/*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*/}
+                    {/*</div>*/}
                 </div>
             </div>
-            <div className={styles.actions}>
-                <Button  color={'primary'} size='small'>
-                    <Link to={`/ads/${_id}`}>Больше</Link>
-                </Button>
-                {/*<div className={styles.favorite}>*/}
-                {/*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*/}
-                {/*</div>*/}
-            </div>
+            {/*<div className={styles.actions}>*/}
+            {/*    <Button color={'primary'} size='small'>*/}
+            {/*        <Link to={`/ads/${_id}`}>Больше</Link>*/}
+            {/*    </Button>*/}
+            {/*    /!*<div className={styles.favorite}>*!/*/}
+            {/*    /!*    <FavoriteRoundedIcon sx={favorite ? {color: '#f44336'} : {color: '#757575'}}/>*!/*/}
+            {/*    /!*</div>*!/*/}
+            {/*</div>*/}
         </div>
     );
 };
