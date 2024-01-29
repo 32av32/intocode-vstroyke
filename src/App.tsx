@@ -11,8 +11,6 @@ import Auth from "./pages/Auth";
 import {AuthEnum} from "./types/enums";
 import Account from "./pages/Account";
 import AddAd from "./pages/AddAd";
-
-import Chat from './components/Chat/chat';
 import AccountSettings from "./components/Account/AccountSettings";
 import UserAds from "./components/Account/UserAds";
 import FavoriteAds from "./components/Account/FavoriteAds";

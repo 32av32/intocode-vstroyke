@@ -8,4 +8,8 @@ export interface IQuestions {
     }
     ad: string
     createdDate: string
+    answer: string
 }
+
+
+

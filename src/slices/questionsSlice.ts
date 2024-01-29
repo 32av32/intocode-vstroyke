@@ -16,6 +16,7 @@ const initialState: IInitialState = {
                 id: "",
                 name: "",
             },
+            answer: "",
             ad: "",
             createdDate: "",
         },
@@ -36,9 +37,11 @@ const questionsSlice = createSlice({
                 state.questions.push(action.payload);
             })
             .addCase(patchQuestion.fulfilled, (state, action: PayloadAction<IQuestions>) => {
-                state.questions = state.questions.map(item => {
+                console.log(action.payload);
+                
+                state.questions.map(item => {
                   if (item._id === action.payload._id) {
-                    return action.payload
+                    item.answer = action.payload.answer
                   }
                   return item
                 })
