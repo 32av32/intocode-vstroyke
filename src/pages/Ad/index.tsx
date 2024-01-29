@@ -42,7 +42,7 @@ const Ad = () => {
             <div>
                 <div className={styles.header}>
                     <h1 className={styles.title}>{detailAd.title}</h1>
-                    <p>{`${detailAd.price} ₽ ${detailAd.unit}`}</p>
+                    <h2>{`${detailAd.price} ₽ ${detailAd.unit}`}</h2>
                 </div>
                 <div className={styles.action}>
                     <Button variant={detailAd.favorite ? 'contained' : 'outlined'} color={detailAd.favorite ? 'error' : 'primary'} onClick={handleFavorite}>
